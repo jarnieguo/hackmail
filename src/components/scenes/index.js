@@ -1,1 +1,2 @@
-export { default as SeedScene } from './SeedScene.js';
+export { SeedScene } from './SeedScene.js';
+export { Room } from './Room.js';
