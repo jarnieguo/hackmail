@@ -75,6 +75,19 @@ const switchScene = (newScene) => {
     scene = scenes[newScene];
 }
 
+//  Set up event handler for keys
+const onKeyDown = (event) => {
+    //  Let individual scenes handle keypresses
+    if (scene.onKeyDown == undefined) {
+        return;
+    }
+    const res = scene.onKeyDown(event);
+    if (res != undefined)  {
+        switchScene(res);
+    }
+}
+window.addEventListener("keydown", onKeyDown, false);
+
 // Render loop
 const onAnimationFrameHandler = (timeStamp) => {
     controls.update();
