@@ -17,6 +17,19 @@ class Room extends Scene {
         objects.push(new Wall(0, 0, -5, 0));
         this.add(...objects);
     }
+
+    //  Handle onClick events
+    onClick(event, objects) {
+        //  Check for collision with computer
+        let obj = objects[0].object;
+        let cur = obj;
+        while (cur != undefined) {
+            if (cur.name == "computer") {
+                return 'desktop';
+            }
+            cur = cur.parent;
+        }
+    }
 }
 
 export { Room };

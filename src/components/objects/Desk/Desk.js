@@ -9,6 +9,7 @@ class Desk extends Group {
         const loader = new GLTFLoader();
         loader.load('src/components/objects/Desk/computer_desk_4/scene.gltf', (gltf) => {
             gltf.scene.scale.set(1.5, 1, 1);
+            // gltf.scene.position.set(0, .5, 0);
             this.add(gltf.scene);
         });
         // loader.load('src/components/objects/Desk/computer_desk_3/scene.gltf', (gltf) => {

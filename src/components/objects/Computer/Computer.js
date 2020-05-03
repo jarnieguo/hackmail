@@ -6,12 +6,11 @@ class Computer extends Group {
     constructor() {
         super();
 
-        const loader = new GLTFLoader();
-
         this.name = 'computer';
+        const loader = new GLTFLoader();
         loader.load(MODEL, (gltf) => {
             gltf.scene.scale.set(.1, .1, .1);
-            gltf.scene.position.set(0, .05, 0);
+            gltf.scene.position.set(0, .1, 0);
             this.add(gltf.scene);
         });
     }
