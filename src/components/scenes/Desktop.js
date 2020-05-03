@@ -11,10 +11,17 @@ class Desktop extends Scene {
         var objects = [];
         objects.push(new BasicLights());
 
+        //  Match icon to scene
+        this.icons = [];
         const icon = new Icon("example.jpg", 0x4287f5, 0, 0, "icon");
-        objects.push(icon);
+        this.addGameIcon(icon, "game", objects);
 
         this.add(...objects);
+    }
+
+    addGameIcon(icon, game, objects) {
+        this.icons[icon.name] = game;
+        objects.push(icon)
     }
 
     onKeyDown(event) {
@@ -30,8 +37,8 @@ class Desktop extends Scene {
         let obj = objects[0].object;
         let cur = obj;
         while (cur != undefined) {
-            if (cur.name == "icon") {
-                return 'game';
+            if (cur instanceof Icon) {
+                return this.icons[cur.name];
             }
             cur = cur.parent;
         }
