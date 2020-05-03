@@ -2,40 +2,39 @@ import { Scene, Color } from 'three';
 import { BasicLights } from 'lights';
 import { Icon } from 'objects';
 
-class Desktop extends Scene {
+class Game extends Scene {
     constructor() {
         super();
 
-        this.background = new Color(0x080808);
+        this.background = new Color(0xffffff);
 
         var objects = [];
         objects.push(new BasicLights());
 
-        const icon = new Icon("example.jpg", 0x4287f5, 0, 0, "icon");
-        objects.push(icon);
+        const exit = new Icon("exit.png", 0xffffff , 3, 3, "exit");
+        objects.push(exit);
 
         this.add(...objects);
     }
 
     onKeyDown(event) {
-        //  Return to room if escape is pressed from desktop
+        //  Return to desktop if escape is pressed from game
         if (event.code == "Escape") {
-            return 'room';
+            return 'desktop';
         }
     }
 
-    //  Handle onClick events
     onClick(event, objects) {
         //  Check for collision with computer
         let obj = objects[0].object;
         let cur = obj;
         while (cur != undefined) {
-            if (cur.name == "icon") {
-                return 'game';
+            if (cur.name == "exit") {
+                return 'desktop';
             }
             cur = cur.parent;
         }
     }
 }
 
-export { Desktop };
+export { Game };

@@ -6,15 +6,15 @@
  * handles window resizes.
  *
  */
-import { 
-    WebGLRenderer, 
+import {
+    WebGLRenderer,
     PerspectiveCamera,
     Vector3,
     Vector2,
-    Raycaster 
+    Raycaster
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Room, Desktop } from 'scenes';
+import { Room, Desktop, Game } from 'scenes';
 
 // Initialize core ThreeJS components
 var scene = new Room();
@@ -25,6 +25,7 @@ const renderer = new WebGLRenderer({ antialias: true });
 var scenes = [];
 scenes['room'] = scene;
 scenes['desktop'] = new Desktop();
+scenes['game'] = new Game();
 
 // Set up camera
 camera.position.set(0, 3, 8);
