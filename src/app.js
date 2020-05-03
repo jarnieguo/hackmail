@@ -8,7 +8,7 @@
  */
 import { WebGLRenderer, PerspectiveCamera, Vector3 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Room } from 'scenes';
+import { Room, Desktop } from 'scenes';
 
 // Initialize core ThreeJS components
 const scene = new Room();
