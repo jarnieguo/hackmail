@@ -1,7 +1,7 @@
 import { Scene, Color } from 'three';
 import { Desk } from 'objects';
 import { BasicLights } from 'lights';
-import { Computer, Floor } from '../objects';
+import { Computer, Floor, Wall } from '../objects';
 
 class Room extends Scene {
     constructor() {
@@ -9,11 +9,13 @@ class Room extends Scene {
 
         this.background = new Color(0x7ec0ee);
 
-        const desk = new Desk();
-        const lights = new BasicLights();
-        const laptop = new Computer();
-        const floor = new Floor();
-        this.add(desk, lights, laptop, floor);
+        let objects = [];
+        objects.push(new Desk());
+        objects.push(new BasicLights());
+        objects.push(new Computer());
+        objects.push(new Floor());
+        objects.push(new Wall(0, 0, -5, 0));
+        this.add(...objects);
     }
 }
 
