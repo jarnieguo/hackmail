@@ -11,6 +11,11 @@ class Desk extends Group {
             gltf.scene.scale.set(1.5, 1, 1);
             this.add(gltf.scene);
         });
+        // loader.load('src/components/objects/Desk/computer_desk_3/scene.gltf', (gltf) => {
+        //     gltf.scene.scale.multiplyScalar(4);
+        //     gltf.scene.position.set(-3.3, -3.15, -1);
+        //     this.add(gltf.scene);
+        // });
     }
 }
 
