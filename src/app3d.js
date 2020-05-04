@@ -14,19 +14,13 @@ import {
     Raycaster,
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Room, Desktop, Game } from 'scenes';
+import { Room } from 'scenes';
 
 
 // Initialize core ThreeJS components
 let scene = new Room();
 const camera = new PerspectiveCamera();
 const renderer = new WebGLRenderer({ antialias: true });
-
-//  Keep track of scenes
-const scenes = [];
-scenes['room'] = scene;
-scenes['desktop'] = new Desktop();
-scenes['game'] = new Game();
 
 // Set up camera
 camera.position.set(0, 3, 8);
@@ -57,44 +51,19 @@ const onMouseMove = (event) => {
 };
 window.addEventListener('mousemove', onMouseMove, false);
 
-//  Use raycaster
-// to fix
-// for now: return true if clicked on laptop
+// Current: return true if laptop is clicked
 const onClick = (event) => {
     raycaster.setFromCamera(mouse, camera);
     const intersects = raycaster.intersectObjects(scene.children, true);
-    //  Let individual scenes handle click event for now
-    if (scene.onClick !== undefined) {
-        const res = scene.onClick(event, intersects);
-        if (res !== undefined) {
-            //  Scenes tell app to switch scenes by returning strings?
-            return switchScene(res);
-        }
+    //  Pass onClick to Room scene
+    const res = scene.onClick(event, intersects);
+    if (res) {
+        //  Tell App to toggle to 2D
+        return true;
     }
     return false;
 };
 // window.addEventListener('click', onClick, false);
-
-
-//  Switch scene
-const switchScene = (newScene) => {
-    if (scene === scenes.room && newScene === 'desktop') {
-    //     console.log('room to desktop');
-    //     document.body.replaceChild(app.view, canvas);
-    //     window.cancelAnimationFrame(aniFrame);
-        return true;
-        // need to fix this? onclick in room shouldnt trigger scene change
-        // since we want scene interaction later?
-    }
-    // else if (newScene === 'room') {
-    //     console.log('to room');
-    //     document.body.replaceChild(canvas, app.view);
-    //     window.requestAnimationFrame(onAnimationFrameHandler);
-    // }
-    // document.body.replaceChild(app.view, canvas);
-    // scene = scenes[newScene];
-    return false;
-};
 
 // //  Set up event handler for keys
 // const onKeyDown = (event) => {
@@ -103,9 +72,6 @@ const switchScene = (newScene) => {
 //         return;
 //     }
 //     const res = scene.onKeyDown(event);
-//     if (res !== undefined) {
-//         switchScene(res);
-//     }
 // };
 // window.addEventListener('keydown', onKeyDown, false);
 
