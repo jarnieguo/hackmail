@@ -11,7 +11,7 @@ class Game extends Scene {
         var objects = [];
         objects.push(new BasicLights());
 
-        const exit = new Icon("exit.png", 0xffffff , 3, 3, "exit");
+        const exit = new Icon('exit.png', 0xffffff, 3, 3, 'exit');
         objects.push(exit);
 
         this.add(...objects);
@@ -19,7 +19,7 @@ class Game extends Scene {
 
     onKeyDown(event) {
         //  Return to desktop if escape is pressed from game
-        if (event.code == "Escape") {
+        if (event.code == 'Escape') {
             return 'desktop';
         }
     }
@@ -29,7 +29,7 @@ class Game extends Scene {
         let obj = objects[0].object;
         let cur = obj;
         while (cur != undefined) {
-            if (cur.name == "exit") {
+            if (cur.name == 'exit') {
                 return 'desktop';
             }
             cur = cur.parent;

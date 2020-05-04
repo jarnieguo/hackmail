@@ -13,20 +13,20 @@ class Desktop extends Scene {
 
         //  Match icon to scene
         this.icons = [];
-        const icon = new Icon("example.jpg", 0x4287f5, 0, 0, "icon");
-        this.addGameIcon(icon, "game", objects);
+        const icon = new Icon('example.jpg', 0x4287f5, 0, 0, 'icon');
+        this.addGameIcon(icon, 'game', objects);
 
         this.add(...objects);
     }
 
     addGameIcon(icon, game, objects) {
         this.icons[icon.name] = game;
-        objects.push(icon)
+        objects.push(icon);
     }
 
     onKeyDown(event) {
         //  Return to room if escape is pressed from desktop
-        if (event.code == "Escape") {
+        if (event.code == 'Escape') {
             return 'room';
         }
     }

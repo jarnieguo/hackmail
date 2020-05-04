@@ -24,7 +24,7 @@ class Room extends Scene {
         let obj = objects[0].object;
         let cur = obj;
         while (cur != undefined) {
-            if (cur.name == "computer") {
+            if (cur.name == 'computer') {
                 return 'desktop';
             }
             cur = cur.parent;

@@ -9,11 +9,11 @@ class Computer extends Group {
         this.name = 'computer';
         const loader = new GLTFLoader();
         loader.load(MODEL, (gltf) => {
-            gltf.scene.scale.set(.1, .1, .1);
-            gltf.scene.position.set(0, .1, 0);
+            gltf.scene.scale.set(0.1, 0.1, 0.1);
+            gltf.scene.position.set(0, 0.1, 0);
             this.add(gltf.scene);
         });
     }
-} 
+}
 
 export default Computer;

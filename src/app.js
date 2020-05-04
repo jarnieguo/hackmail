@@ -11,7 +11,7 @@ import {
     PerspectiveCamera,
     Vector3,
     Vector2,
-    Raycaster
+    Raycaster,
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { Room, Desktop, Game } from 'scenes';
@@ -51,9 +51,9 @@ controls.update();
 const raycaster = new Raycaster();
 var mouse = new Vector2();
 const onMouseMove = (event) => {
-	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-    mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-}
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+};
 window.addEventListener('mousemove', onMouseMove, false);
 
 //  Use raycaster
@@ -68,13 +68,13 @@ const onClick = (event) => {
             switchScene(res);
         }
     }
-}
+};
 window.addEventListener('click', onClick, false);
 
 //  Switch scene
 const switchScene = (newScene) => {
     scene = scenes[newScene];
-}
+};
 
 //  Set up event handler for keys
 const onKeyDown = (event) => {
@@ -83,11 +83,11 @@ const onKeyDown = (event) => {
         return;
     }
     const res = scene.onKeyDown(event);
-    if (res != undefined)  {
+    if (res != undefined) {
         switchScene(res);
     }
-}
-window.addEventListener("keydown", onKeyDown, false);
+};
+window.addEventListener('keydown', onKeyDown, false);
 
 // Render loop
 const onAnimationFrameHandler = (timeStamp) => {

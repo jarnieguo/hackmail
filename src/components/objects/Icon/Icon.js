@@ -1,14 +1,9 @@
-import {
-    Mesh,
-    BoxGeometry,
-    MeshStandardMaterial,
-    TextureLoader
-} from 'three';
+import { Mesh, BoxGeometry, MeshStandardMaterial, TextureLoader } from 'three';
 
 class Icon extends Mesh {
     constructor(img, color, x, y, name) {
         const loader = new TextureLoader();
-        const texture = loader.load("src/components/objects/Icon/" + img);
+        const texture = loader.load('src/components/objects/Icon/' + img);
         const geometry = new BoxGeometry(1, 1, 1);
         const material = new MeshStandardMaterial({
             color,
