@@ -46,6 +46,7 @@ module.exports = {
             lights$: path.resolve(__dirname, 'src/components/lights'),
             objects$: path.resolve(__dirname, 'src/components/objects'),
             scenes$: path.resolve(__dirname, 'src/components/scenes'),
+            stages$: path.resolve(__dirname, 'src/components/stages'),
             app2d$: path.resolve(__dirname, 'src/app2d.js'),
             app3d$: path.resolve(__dirname, 'src/app3d.js')
         },

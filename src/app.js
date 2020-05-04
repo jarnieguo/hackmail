@@ -22,33 +22,12 @@ document.body.appendChild(canvas3d);
 let in3d = true;
 const toggleMode = () => {
     if (in3d) {
-        console.log('entering 2d');
-        disable3d();
-        enable2d();
         document.body.replaceChild(canvas2d, canvas3d);
     }
     else {
-        console.log('entering 3d');
-        disable2d();
-        enable3d();
         document.body.replaceChild(canvas3d, canvas2d);
     }
     in3d = !in3d;
-};
-
-
-const enable2d = () => {
-
-};
-
-const disable2d = () => {
-
-};
-
-const enable3d = () => {
-};
-
-const disable3d = () => {
 };
 
 
