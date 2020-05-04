@@ -1,99 +1,91 @@
-/**
- * app.js
- *
- * This is the first file loaded. It sets up the Renderer,
- * Scene and Camera. It also starts the render loop and
- * handles window resizes.
- *
- */
+
+
 import {
-    WebGLRenderer,
-    PerspectiveCamera,
-    Vector3,
-    Vector2,
-    Raycaster,
-} from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Room, Desktop, Game } from 'scenes';
+    canvas as canvas3d,
+    onClick as onClick3d,
+    onAnimationFrameHandler as onAnimationFrameHandler3d,
+    windowResizeHandler as resizeHandler3d,
+} from 'app3d';
 
-// Initialize core ThreeJS components
-var scene = new Room();
-const camera = new PerspectiveCamera();
-const renderer = new WebGLRenderer({ antialias: true });
+import {
+    app as app2d
+} from 'app2d';
+const canvas2d = app2d.view;
 
-//  Keep track of scenes
-var scenes = [];
-scenes['room'] = scene;
-scenes['desktop'] = new Desktop();
-scenes['game'] = new Game();
 
-// Set up camera
-camera.position.set(0, 3, 8);
-camera.lookAt(new Vector3(0, 0, 0));
+// init
+document.body.appendChild(canvas3d);
 
-// Set up renderer, canvas, and minor CSS adjustments
-renderer.setPixelRatio(window.devicePixelRatio);
-const canvas = renderer.domElement;
-canvas.style.display = 'block'; // Removes padding below canvas
-document.body.style.margin = 0; // Removes margin around page
-document.body.style.overflow = 'hidden'; // Fix scrolling
-document.body.appendChild(canvas);
 
-// Set up controls
-const controls = new OrbitControls(camera, canvas);
-controls.enableDamping = true;
-controls.enablePan = false;
-controls.minDistance = 4;
-controls.maxDistance = 16;
-controls.update();
 
-//  Set up raycaster
-const raycaster = new Raycaster();
-var mouse = new Vector2();
-const onMouseMove = (event) => {
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+// Toggle between 2D and 3D mode
+let in3d = true;
+const toggleMode = () => {
+    if (in3d) {
+        console.log('entering 2d');
+        disable3d();
+        enable2d();
+        document.body.replaceChild(canvas2d, canvas3d);
+    }
+    else {
+        console.log('entering 3d');
+        disable2d();
+        enable3d();
+        document.body.replaceChild(canvas3d, canvas2d);
+    }
+    in3d = !in3d;
 };
-window.addEventListener('mousemove', onMouseMove, false);
 
-//  Use raycaster
-const onClick = (event) => {
-    raycaster.setFromCamera(mouse, camera);
-    var intersects = raycaster.intersectObjects(scene.children, true);
-    //  Let individual scenes handle click event for now
-    if (scene.onClick != undefined) {
-        const res = scene.onClick(event, intersects);
-        if (res != undefined) {
-            //  Scenes tell app to switch scenes by returning strings?
-            switchScene(res);
+
+const enable2d = () => {
+
+};
+
+const disable2d = () => {
+
+};
+
+const enable3d = () => {
+};
+
+const disable3d = () => {
+};
+
+
+const onClickHandler = (event) => {
+    if (in3d) {
+        if (onClick3d(event)) {
+            toggleMode();
+        }
+    }
+    else {
+        // no onclick handler for 2d yet ???
+    }
+};
+window.addEventListener('click', onClickHandler, false);
+
+
+const onKeyDownHandler = (event) => {
+    if (in3d) {
+        // call 3d keydown handler
+    }
+    else {
+        // call 2d keydown handler
+        if (event.code === 'Escape') {
+            toggleMode();
         }
     }
 };
-window.addEventListener('click', onClick, false);
-
-//  Switch scene
-const switchScene = (newScene) => {
-    scene = scenes[newScene];
-};
-
-//  Set up event handler for keys
-const onKeyDown = (event) => {
-    //  Let individual scenes handle keypresses
-    if (scene.onKeyDown == undefined) {
-        return;
-    }
-    const res = scene.onKeyDown(event);
-    if (res != undefined) {
-        switchScene(res);
-    }
-};
-window.addEventListener('keydown', onKeyDown, false);
+window.addEventListener('keydown', onKeyDownHandler, false);
 
 // Render loop
 const onAnimationFrameHandler = (timeStamp) => {
-    controls.update();
-    renderer.render(scene, camera);
-    scene.update && scene.update(timeStamp);
+    if (in3d) {
+        onAnimationFrameHandler3d(timeStamp);
+    }
+    else {
+        // 2d currently has no animation frame handler
+    }
     window.requestAnimationFrame(onAnimationFrameHandler);
 };
 window.requestAnimationFrame(onAnimationFrameHandler);
@@ -101,9 +93,13 @@ window.requestAnimationFrame(onAnimationFrameHandler);
 // Resize Handler
 const windowResizeHandler = () => {
     const { innerHeight, innerWidth } = window;
-    renderer.setSize(innerWidth, innerHeight);
-    camera.aspect = innerWidth / innerHeight;
-    camera.updateProjectionMatrix();
+
+    resizeHandler3d(innerWidth, innerHeight);
+    app2d.renderer.resize(innerWidth, innerHeight);
 };
 windowResizeHandler();
 window.addEventListener('resize', windowResizeHandler, false);
+
+
+
+

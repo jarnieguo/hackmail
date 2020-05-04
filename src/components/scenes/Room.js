@@ -20,6 +20,9 @@ class Room extends Scene {
 
     //  Handle onClick events
     onClick(event, objects) {
+        if (objects.length === 0) {
+            return;
+        }
         //  Check for collision with computer
         let obj = objects[0].object;
         let cur = obj;
