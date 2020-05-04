@@ -1,5 +1,7 @@
 import { Group } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+// import MODEL from '/src/components/objects/Desk/computer_desk_4/scene.gltf';
+import MODEL from './desk.glb';
 
 class Desk extends Group {
     constructor() {
@@ -8,7 +10,7 @@ class Desk extends Group {
         this.name = 'desk';
         const loader = new GLTFLoader();
         loader.load(
-            'src/components/objects/Desk/computer_desk_4/scene.gltf',
+            MODEL,
             (gltf) => {
                 gltf.scene.scale.set(1.5, 1, 1);
                 // gltf.scene.position.set(0, .5, 0);

@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js';
+import IMAGE from './assets/ex.png';
 
 // https://pixijs.io/examples/#/interaction/custom-hitarea.js
 
@@ -9,7 +10,7 @@ app.renderer.autoDensity = true;
 app.renderer.resize(window.innerWidth, window.innerHeight);
 // document.body.appendChild(app.view);
 
-const yellowStar = PIXI.Texture.from('/src/assets/ex.png');
+const yellowStar = PIXI.Texture.from(IMAGE);
 
 // Standard Sprite Button
 const starButton1 = new PIXI.Sprite(yellowStar);

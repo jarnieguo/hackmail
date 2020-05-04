@@ -5,11 +5,12 @@ import {
     TextureLoader,
     RepeatWrapping,
 } from 'three';
+import TEXTURE from './carpet-1.jpg';
 
 class Floor extends Mesh {
     constructor() {
         const loader = new TextureLoader();
-        let texture = loader.load('src/components/objects/Floor/carpet-1.jpg');
+        let texture = loader.load(TEXTURE);
         texture.wrapS = texture.wrapT = RepeatWrapping;
         texture.repeat.set(10, 10);
 
