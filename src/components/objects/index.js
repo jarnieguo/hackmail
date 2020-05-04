@@ -4,4 +4,3 @@ export * from './Desk';
 export * from './Computer';
 export * from './Floor';
 export * from './Wall';
-export * from './Icon';
