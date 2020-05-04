@@ -4,8 +4,6 @@ import {
     Desktop
 } from 'stages';
 
-// https://pixijs.io/examples/#/interaction/custom-hitarea.js
-
 
 // Set up renderer
 const app = new PIXI.Application();

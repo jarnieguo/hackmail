@@ -1,29 +1,19 @@
 import * as PIXI from 'pixi.js';
+import { Game } from '../Game';
+
+import ICON from './icon.png';
 import IMAGE from './ex.png';
 
 // https://pixijs.io/examples/#/interaction/custom-hitarea.js
 
-class Test {
+class Test extends Game {
     constructor(parent, desktop) {
-        this.parent = parent;
-        this.desktop = desktop;
-        this.objects = [];
-
-        this.bgColor = 0x1099bb;
-
-        this.initObjects();
+        super(parent, desktop);
+        this.setBgColor(0xFFFFFF);
+        this.setIcon(PIXI.Texture.from(ICON));
+        this.setLabel("fake game");
     }
 
-
-    stage() {
-        this.parent.renderer.backgroundColor = this.bgColor;
-        this.parent.stage.addChild(...this.objects);
-    }
-
-    exit() {
-        this.parent.stage.removeChildren();
-        this.desktop.stage();
-    }
 
     initObjects() {
         const yellowStar = PIXI.Texture.from(IMAGE);
