@@ -31,10 +31,12 @@ desktop.stage();
 
 // Render loop
 const onAnimationFrameHandler = (timeStamp) => {
-    games['textbubblegame'].update();
-    // controls.update();
-    // renderer.render(scene, camera);
-    // scene.update && scene.update(timeStamp);
+
+    for (let gameName in games) {
+      if (games[gameName].active) {
+        games[gameName].update(timeStamp);
+      }
+    }
 };
 
 

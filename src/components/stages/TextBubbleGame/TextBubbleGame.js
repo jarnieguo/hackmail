@@ -3,6 +3,7 @@ import { Game } from '../Game';
 
 import ICON from './icon.png';
 import IMAGE from './ex.png';
+import BUBBLE from './bubble.png';
 
 // https://pixijs.io/examples/#/interaction/custom-hitarea.js
 
@@ -14,6 +15,8 @@ class TextBubbleGame extends Game {
         this.setIcon(PIXI.Texture.from(ICON));
         this.setLabel("text bubble game");
 
+        this.bubbles = [];
+
         this.initObjects();
     }
 
@@ -21,6 +24,7 @@ class TextBubbleGame extends Game {
     initObjects() {
         super.initObjects();
         this.initBasicScene();
+        // this.initBubble();
     }
 
     initBasicScene() {
@@ -143,8 +147,8 @@ class TextBubbleGame extends Game {
         text4.x = starButton4.x - 10;
         text4.y = starButton4.y + 170;
 
-        this.protag= new PIXI.Sprite(yellowStar);
-        this.protag.position.set(0, 0);
+        // this.protag= new PIXI.Sprite(yellowStar);
+        // this.protag.position.set(0, 0);
 
         this.basicScene.addChild(
             starButton2,
@@ -156,8 +160,8 @@ class TextBubbleGame extends Game {
             text1,
             text2,
             text3,
-            text4,
-            this.protag
+            text4
+            //this.protag
         );
         this.objects.push(this.basicScene);
     }
@@ -174,8 +178,30 @@ class TextBubbleGame extends Game {
         object.tint = 0xFFFFFF;
     }
 
-    update() {
-      this.protag.position.x += 1
+    initBubble() {
+      const bubbleIcon = PIXI.Texture.from(BUBBLE);
+      let bubble = new PIXI.Sprite(bubbleIcon);
+
+      bubble.position.set(0, Math.random() * window.innerHeight);
+      // bubble.position.set(Math.random() * window.innerWidth, window.innerHeight);
+
+      this.bubbles.push(bubble);
+
+      this.objects.push(bubble);
+
+      this.parent.stage.addChild(bubble);
+    }
+
+    update(timeStamp) {
+      let numBubs = this.bubbles.length;
+      //console.log("numBubs", numBubs);
+      for (let i = 0; i < numBubs; i++) {
+        (this.bubbles[i]).position.x += (Math.random()*2)
+      }
+
+      if (Math.random() < 0.2) {
+        this.initBubble();
+      }
     }
 
 }
