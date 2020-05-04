@@ -13,7 +13,7 @@ class Bubble {
   constructor() {
     this.sprite = new PIXI.Sprite(bubbleIcon);
 
-    this.sprite.position.set(Math.random() * window.innerWidth, window.innerHeight - 100);
+    this.sprite.position.set(Math.random() * window.innerWidth, window.innerHeight + 10);
 
     this.xVel = (Math.random() - 0.5) * 4;
     this.yVel = -1 * Math.random() * 40;
@@ -65,12 +65,29 @@ class TextBubbleGame extends Game {
       this.parent.stage.addChild(bub.sprite);
     }
 
+    // util: is bubble still in screen?
+    inScreen(bubble) {
+      let inSight = (bubble.sprite.position.y < window.innerHeight + 11);
+
+      // if (!inSight) {
+      //   this.parent.stage.removeChild(bubble.sprite);
+      // }
+      return inSight;
+    }
+
     update(timeStamp) {
       let numBubs = this.bubbles.length;
 
       for (let i = 0; i < numBubs; i++) {
         this.bubbles[i].update();
+
+        // remove out of screen bubbles from screen
+        if (!this.inScreen(this.bubbles[i])) {
+          this.parent.stage.removeChild(this.bubbles[i].sprite);
+        }
       }
+      // remove out of screen bubbles from array
+      this.bubbles = this.bubbles.filter(this.inScreen);
 
       if (Math.random() < 0.2) {
         this.initBubble();
@@ -78,10 +95,6 @@ class TextBubbleGame extends Game {
     }
 
 }
-
-
-
-
 
 export {
     TextBubbleGame
