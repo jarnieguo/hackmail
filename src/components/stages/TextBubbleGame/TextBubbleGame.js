@@ -64,6 +64,9 @@ class TextBubbleGame extends Game {
         this.initObjects();
     }
 
+    init() {
+      this.score = 0;
+    }
 
     initObjects() {
         super.initObjects();

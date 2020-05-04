@@ -23,6 +23,12 @@ class Game {
         // this.initObjects();
     }
 
+    // called for every instance of the game
+    // to be overridden
+    init() {
+
+    }
+
     setBgColor(bgcolor) {
         this.bgColor = bgcolor;
     }
@@ -40,6 +46,7 @@ class Game {
         this.parent.renderer.backgroundColor = this.bgColor;
         this.parent.stage.addChild(...this.objects);
         this.active = true;
+        this.init();
     }
     // Don't override
     exit() {
