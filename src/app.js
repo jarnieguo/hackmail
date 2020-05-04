@@ -8,7 +8,8 @@ import {
 } from 'app3d';
 
 import {
-    app as app2d
+    app as app2d,
+    onAnimationFrameHandler as onAnimationFrameHandler2d
 } from 'app2d';
 const canvas2d = app2d.view;
 
@@ -64,6 +65,7 @@ const onAnimationFrameHandler = (timeStamp) => {
     }
     else {
         // 2d currently has no animation frame handler
+        onAnimationFrameHandler2d(timeStamp);
     }
     window.requestAnimationFrame(onAnimationFrameHandler);
 };
@@ -78,7 +80,3 @@ const windowResizeHandler = () => {
 };
 windowResizeHandler();
 window.addEventListener('resize', windowResizeHandler, false);
-
-
-
-

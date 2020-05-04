@@ -2,7 +2,8 @@ import * as PIXI from 'pixi.js';
 import {
     Desktop,
     Test,
-    Test2
+    Test2,
+    TextBubbleGame
 } from 'stages';
 
 
@@ -21,14 +22,24 @@ const desktop = new Desktop(app);
 const games = {
     'game1': new Test(app, desktop),
     'game2': new Test2(app, desktop),
-    'game3': new Test(app, desktop)
+    'game3': new Test(app, desktop),
+    'textbubblegame': new TextBubbleGame(app, desktop)
 };
 desktop.addGames(games);
 
 desktop.stage();
 
+// Render loop
+const onAnimationFrameHandler = (timeStamp) => {
+    games['textbubblegame'].update();
+    // controls.update();
+    // renderer.render(scene, camera);
+    // scene.update && scene.update(timeStamp);
+};
+
 
 
 export {
-    app
+    app,
+    onAnimationFrameHandler
 };
