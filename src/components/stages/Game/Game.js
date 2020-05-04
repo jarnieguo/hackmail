@@ -18,6 +18,8 @@ class Game {
         this.label = "Game Label";
         this.textStyle = new PIXI.TextStyle({ fill: '#000000' });
 
+        this.active = false;
+
         // this.initObjects();
     }
 
@@ -37,11 +39,13 @@ class Game {
     stage() {
         this.parent.renderer.backgroundColor = this.bgColor;
         this.parent.stage.addChild(...this.objects);
+        this.active = true;
     }
     // Don't override
     exit() {
         this.parent.stage.removeChildren();
         this.desktop.stage();
+        this.active = false;
     }
 
     // Hm
