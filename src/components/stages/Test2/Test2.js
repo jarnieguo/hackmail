@@ -6,26 +6,25 @@ import IMAGE from './ex.png';
 
 // https://pixijs.io/examples/#/interaction/custom-hitarea.js
 
-class Test extends Game {
+class Test2 extends Game {
     constructor(parent, desktop) {
         super(parent, desktop);
 
-        this.setBgColor(0xFFFFFF);
+        this.setBgColor(0x000000);
         this.setIcon(PIXI.Texture.from(ICON));
-        this.setLabel("fake game");
+        this.setLabel("not game");
 
         this.initObjects();
     }
-
 
     initObjects() {
         super.initObjects();
         this.initBasicScene();
     }
 
+
     initBasicScene() {
         this.basicScene = new PIXI.Container();
-
         const yellowStar = PIXI.Texture.from(IMAGE);
 
         // Standard Sprite Button
@@ -177,5 +176,5 @@ class Test extends Game {
 
 
 export {
-    Test
+    Test2
 };

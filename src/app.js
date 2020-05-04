@@ -74,7 +74,7 @@ const windowResizeHandler = () => {
     const { innerHeight, innerWidth } = window;
 
     resizeHandler3d(innerWidth, innerHeight);
-    app2d.renderer.resize(innerWidth, innerHeight);
+    // app2d.renderer.resize(innerWidth, innerHeight);
 };
 windowResizeHandler();
 window.addEventListener('resize', windowResizeHandler, false);
