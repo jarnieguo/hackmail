@@ -10,7 +10,7 @@ import BUBBLE2 from './bubble2.png';
 // https://pixijs.io/examples/#/interaction/custom-hitarea.js
 const bubbleIcon = PIXI.Texture.from(BUBBLE);
 const badBubbleIcon = PIXI.Texture.from(BUBBLE2);
-const GRAVITY = 0.4;
+const GRAVITY = 0.2;
 
 class Bubble {
   constructor(parent) {
@@ -21,7 +21,7 @@ class Bubble {
     // pick random text from appropriate text array
     let textArray = this.isBad ? BADTEXTS : GOODTEXTS;
     let txt = textArray[Math.floor(Math.random()*textArray.length)];
-    let text = new PIXI.Text(txt, {fontFamily : 'Arial', fontSize: 13});
+    let text = new PIXI.Text(txt, {fontFamily : 'Arial', fontSize: 14});
 
     this.sprite = new PIXI.Sprite(bubbleIcon);
     this.sprite.position.set(Math.random() * window.innerWidth, window.innerHeight + 10);
@@ -34,7 +34,7 @@ class Bubble {
 
 
     this.xVel = (Math.random() - 0.5) * 4;
-    this.yVel = -1 * (Math.random() * 20 + 10);
+    this.yVel = -1 * (Math.random() * 15 + 5);
 
     this.sprite.buttonMode = true;
     this.sprite.interactive = true;

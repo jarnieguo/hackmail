@@ -1,17 +1,17 @@
 let GOODTEXTS = [
-  "scandalous \n scandal \n oof",
-  "scandalous \n scandal \n oof 2",
-  "scandalous \n scandal \n oof 3",
-  "scandalous \n scandal \n oof 4",
-  "scandalous \n candal \n oof 5"
+  "ooh baby \n wanna come \n over ;))))",
+  "last night \n was hella \n sexy",
+  "ur sexier \n than np \n completeness",
+  "i like u \n better than code \n without bugs",
+  "u turn \n me \n on"
 ];
 
 let BADTEXTS = [
-  "innocent \n no-scandal \n oof",
-  "innocent \n no-scandal \n oof 2",
-  "innocent \n no-scandal \n oof 3",
-  "innocent \n no-scandal \n oof 4",
-  "innocent \n no-scandal \n oof 5"
+  "phenolphthalein \n turns pink \n sometimes",
+  "i think \n p is equal \n to np",
+  "definitive \n finite \n automata",
+  "tell my \n wife i love \n her",
+  "routers are \n layer 2 \n abstractions"
 ]
 
 export {
