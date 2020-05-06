@@ -95,7 +95,7 @@ class TextBubbleGame extends Game {
 
     init() {
       this.score = 0;
-      this.lives = 2;
+      this.lives = 1;
     }
 
     initObjects() {
