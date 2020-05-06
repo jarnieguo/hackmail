@@ -85,6 +85,37 @@ class Game {
         this.objects.push(barLabel);
     }
 
+    infoBox(header, text) {
+
+      const rect = new PIXI.Graphics();
+      // Rectangle
+      rect.beginFill(0xc8eaf7);
+      rect.drawRect(0, 0, 500, 300);
+      rect.endFill();
+
+      rect.x = rect.y = 300;
+
+      const headerTxt = new PIXI.Text(header);
+      const bodyTxt = new PIXI.Text(text);
+
+      headerTxt.position.x = bodyTxt.position.x = rect.width/2;
+      headerTxt.position.y = rect.height * 0.1;
+      bodyTxt.position.y = rect.height * 0.3;
+
+      headerTxt.anchor.x = bodyTxt.anchor.x = 0.5;
+      headerTxt.anchor.y = bodyTxt.anchor.y = 0.5;
+
+      rect.addChild(headerTxt);
+      rect.addChild(bodyTxt);
+
+      this.parent.stage.addChild(rect);
+    }
+
+    gameOver() {
+      this.infoBox("Game Over", "you suck!");
+      this.active = false;
+    }
+
 }
 
 

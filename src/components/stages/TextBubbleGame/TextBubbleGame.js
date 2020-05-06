@@ -95,7 +95,7 @@ class TextBubbleGame extends Game {
 
     init() {
       this.score = 0;
-      this.lives = 5;
+      this.lives = 1;
     }
 
     initObjects() {
@@ -154,6 +154,10 @@ class TextBubbleGame extends Game {
       // create a bubble with some probability
       if (Math.random() < 0.06) {
         this.initBubble();
+      }
+
+      if (this.lives <= 0) {
+        super.gameOver();
       }
 
     }
