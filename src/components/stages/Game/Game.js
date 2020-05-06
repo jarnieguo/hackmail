@@ -85,6 +85,25 @@ class Game {
         this.objects.push(barLabel);
     }
 
+    infoBox(header, text) {
+      const container = new PIXI.Container();
+
+      // Move container to the center
+      container.x = this.parent.screen.width / 2;
+      container.y = this.parent.screen.height / 2;
+
+      container.addChild(new PIXI.Text(header));
+      container.addChild(new PIXI.Text(text));
+      container.alpha = 1;
+
+      this.parent.stage.addChild(container);
+    }
+
+    gameOver() {
+      this.infoBox("Game Over", "you suck!");
+      this.active = false;
+    }
+
 }
 
 
