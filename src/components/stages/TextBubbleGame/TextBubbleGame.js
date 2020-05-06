@@ -1,24 +1,40 @@
 import * as PIXI from 'pixi.js';
 import { Game } from '../Game';
 
+import { GOODTEXTS, BADTEXTS } from './texts.js';
 import ICON from './icon.png';
 import IMAGE from './ex.png';
 import BUBBLE from './bubble.png';
+import BUBBLE2 from './bubble2.png';
 
 // https://pixijs.io/examples/#/interaction/custom-hitarea.js
 const bubbleIcon = PIXI.Texture.from(BUBBLE);
+const badBubbleIcon = PIXI.Texture.from(BUBBLE2);
 const GRAVITY = 0.4;
 
 class Bubble {
   constructor(parent) {
     this.parent = parent;
 
-    this.sprite = new PIXI.Sprite(bubbleIcon);
+    this.isBad = (Math.random() < 0.2);
 
+    // pick random text from appropriate text array
+    let textArray = this.isBad ? BADTEXTS : GOODTEXTS;
+    let txt = textArray[Math.floor(Math.random()*textArray.length)];
+    let text = new PIXI.Text(txt, {fontFamily : 'Arial', fontSize: 13});
+
+    this.sprite = new PIXI.Sprite(bubbleIcon);
     this.sprite.position.set(Math.random() * window.innerWidth, window.innerHeight + 10);
 
+    this.sprite.anchor.x = this.sprite.anchor.y = 0.5;
+    text.anchor.x = text.anchor.y = 0.5;
+
+    this.sprite.addChild(text);
+
+
+
     this.xVel = (Math.random() - 0.5) * 4;
-    this.yVel = -1 * Math.random() * 30;
+    this.yVel = -1 * (Math.random() * 20 + 10);
 
     this.sprite.buttonMode = true;
     this.sprite.interactive = true;
@@ -26,6 +42,7 @@ class Bubble {
     this.popped = false;
 
     this.sprite.on('pointerdown', (event) => this.onClick(this.sprite));
+
   }
 
   // pop
@@ -33,7 +50,12 @@ class Bubble {
       object.tint = 0x333333;
       this.popped = true;
 
-      this.parent.score += 1;
+      if (this.isBad) {
+        this.parent.lives -= 1;
+      }
+      else {
+        this.parent.score += 1;
+      }
   }
 
   update() {
@@ -49,23 +71,31 @@ class TextBubbleGame extends Game {
         super(parent, desktop);
 
         this.setBgColor(0xFFFFFF);
-        this.setIcon(PIXI.Texture.from(ICON));
+        this.setIcon(bubbleIcon);
+        //this.setIcon(PIXI.Texture.from(ICON));
         this.setLabel("text bubble game");
 
         this.bubbles = [];
-        this.score = 0;
 
-        this.scoreText = new PIXI.Text(('Score: ' + this.score));
-        //  {fontFamily : 'Arial', fontSize: 20, fill : 0x, align : 'center'}
-        this.scoreText.position.set(0, 70);
+        this.init()
 
-        this.objects.push(this.scoreText);
+        this.scoreText = this.addLabel("Score", this.score, 0, 70)
+        this.livesText = this.addLabel("Lives", this.lives, 120, 70)
 
         this.initObjects();
     }
 
+    // return text
+    addLabel(label, val, x, y) {
+      let text = new PIXI.Text((label + ': ' + val));
+      text.position.set(x, y);
+      this.objects.push(text);
+      return text;
+    }
+
     init() {
       this.score = 0;
+      this.lives = 5;
     }
 
     initObjects() {
@@ -105,9 +135,11 @@ class TextBubbleGame extends Game {
     update(timeStamp) {
 
       this.scoreText.text = ('Score: ' + this.score);
+      this.livesText.text = ('Lives: ' + this.lives);
 
       let numBubs = this.bubbles.length;
 
+      // update each bubble
       for (let i = 0; i < numBubs; i++) {
         this.bubbles[i].update();
 
@@ -119,7 +151,8 @@ class TextBubbleGame extends Game {
       // remove out of screen bubbles from array
       this.bubbles = this.bubbles.filter(this.isAlive);
 
-      if (Math.random() < 0.2) {
+      // create a bubble with some probability
+      if (Math.random() < 0.06) {
         this.initBubble();
       }
 
