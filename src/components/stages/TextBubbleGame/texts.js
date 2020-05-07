@@ -3,7 +3,11 @@ let GOODTEXTS = [
   "last night \n was hella \n sexy",
   "ur sexier \n than np \n completeness",
   "i like u \n better than code \n without bugs",
-  "u turn \n me \n on"
+  "u turn \n me \n on",
+  "let's roleplay. i can \n be a client program \n u can be my server",
+  "hey \n wanna see my \n Big Data 😉 🍆",
+  "🍆 👅 💦"
+  // "hear u can hack into \n anything can u hack \n ur way into my pants 2nite"
 ];
 
 let BADTEXTS = [
