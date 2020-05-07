@@ -2,26 +2,23 @@ import * as PIXI from 'pixi.js';
 import { Game } from '../Game';
 
 import { GOODTEXTS, BADTEXTS } from './texts.js';
-import ICON from './icon.png';
-import IMAGE from './ex.png';
 import BUBBLE from './bubble.png';
-import BUBBLE2 from './bubble2.png';
 
 // https://pixijs.io/examples/#/interaction/custom-hitarea.js
 const bubbleIcon = PIXI.Texture.from(BUBBLE);
-const badBubbleIcon = PIXI.Texture.from(BUBBLE2);
-const GRAVITY = 0.2;
+const GRAVITY = 0.07;
 
 class Bubble {
   constructor(parent) {
     this.parent = parent;
 
-    this.isBad = (Math.random() < 0.2);
+    this.isBad = (Math.random() < 0.4);
 
     // pick random text from appropriate text array
     let textArray = this.isBad ? BADTEXTS : GOODTEXTS;
     let txt = textArray[Math.floor(Math.random()*textArray.length)];
     let text = new PIXI.Text(txt, {fontFamily : 'Arial', fontSize: 14});
+    text.y = -1
 
     this.sprite = new PIXI.Sprite(bubbleIcon);
     this.sprite.position.set(Math.random() * window.innerWidth, window.innerHeight + 10);
@@ -34,7 +31,7 @@ class Bubble {
 
 
     this.xVel = (Math.random() - 0.5) * 4;
-    this.yVel = -1 * (Math.random() * 15 + 5);
+    this.yVel = -1 * (Math.random() * 5 + 7);
 
     this.sprite.buttonMode = true;
     this.sprite.interactive = true;
@@ -72,7 +69,6 @@ class TextBubbleGame extends Game {
 
         this.setBgColor(0xFFFFFF);
         this.setIcon(bubbleIcon);
-        //this.setIcon(PIXI.Texture.from(ICON));
         this.setLabel("text bubble game");
 
         this.bubbles = [];
@@ -95,7 +91,7 @@ class TextBubbleGame extends Game {
 
     init() {
       this.score = 0;
-      this.lives = 1;
+      this.lives = 5;
     }
 
     initObjects() {
@@ -152,7 +148,7 @@ class TextBubbleGame extends Game {
       this.bubbles = this.bubbles.filter(this.isAlive);
 
       // create a bubble with some probability
-      if (Math.random() < 0.06) {
+      if (Math.random() < 0.02) {
         this.initBubble();
       }
 
