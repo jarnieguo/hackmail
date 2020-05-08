@@ -4,6 +4,7 @@ import { Game } from '../Game';
 // TODO: make real icon
 import ICON from './icon2.png';
 import PWBLOCK from './pwblock2.png'
+import { PASSWORDS } from './passwords.js';
 
 const pwBlock = PIXI.Texture.from(PWBLOCK);
 
@@ -90,10 +91,14 @@ class Hangman extends Game {
         this.setIcon(PIXI.Texture.from(ICON));
         this.setLabel("Hangman");
 
-        this.password = "password";
+        let rand = Math.floor(Math.random() * PASSWORDS.length);
+        if (rand >= PASSWORDS.length) {
+            rand = PASSWORDS.length - 1;
+        }
+        this.password = PASSWORDS[rand];
         this.letterBlocks = [];
-
         this.gameWon = false;
+        this.timer = 10;
 
         this.initObjects();
     }
@@ -198,9 +203,11 @@ class Hangman extends Game {
             return;
         }
 
-        if (Math.random() < .02) {
+        if (this.timer == 0) {
+            this.timer = 30;
             this.initLetterBlock();
         }
+        this.timer--;
 
         for (let i = 0; i < this.letterBlocks.length; i++) {
             this.letterBlocks[i].update();
