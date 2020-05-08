@@ -3,7 +3,8 @@ import {
     Desktop,
     Test,
     Test2,
-    TextBubbleGame
+    TextBubbleGame,
+    Hangman
 } from 'stages';
 
 
@@ -20,10 +21,11 @@ const desktop = new Desktop(app);
 
 // Initialize and keep track of games
 const games = {
-    'game1': new Test(app, desktop),
-    'game2': new Test2(app, desktop),
+    // 'game1': new Test(app, desktop),
+    // 'game2': new Test2(app, desktop),
     'game3': new Test(app, desktop),
-    'textbubblegame': new TextBubbleGame(app, desktop)
+    'textbubblegame': new TextBubbleGame(app, desktop),
+    'hangman': new Hangman(app, desktop)
 };
 desktop.addGames(games);
 
