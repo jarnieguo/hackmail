@@ -8,12 +8,10 @@ import { PASSWORDS } from './passwords.js';
 
 const pwBlock = PIXI.Texture.from(PWBLOCK);
 
-//  The blocks that comprise the password
-class PasswordBlock {
+class LetterBlock {
     constructor(parent, letter, x, y) {
         this.parent = parent;
-
-        this.letter = letter; 
+        this.letter = letter.toUpperCase(); 
 
         let sprite = new PIXI.Sprite(pwBlock);
         sprite.width = 60;
@@ -22,18 +20,22 @@ class PasswordBlock {
         sprite.position.x = x;
         sprite.anchor.x = sprite.anchor.y = 0.5;
         this.sprite = sprite;
+    }
+}
+//  The blocks that comprise the password
+class PasswordBlock extends LetterBlock {
+    constructor(parent, letter, x, y) {
+        super(parent, letter, x, y);
 
         this.sprite.interactive = true;
-    
         this.revealed = false;
-
         this.sprite.on('pointerdown', (event) => this.onClick(this.sprite));
     }
 
     revealLetter() {
         this.revealed = true;
 
-        let text = new PIXI.Text(this.letter.toUpperCase(), {fontFamily : 'Arial', fontSize: 100});
+        let text = new PIXI.Text(this.letter, {fontFamily : 'Arial', fontSize: 100});
         text.anchor.x = text.anchor.y = 0.5;
         this.sprite.addChild(text);
 
@@ -46,27 +48,17 @@ class PasswordBlock {
 }
 
 //  The blocks that reveal letters
-class LetterBlock {
+class RandomLetterBlock extends LetterBlock {
     constructor(parent, letter, x, y) {
-        this.parent = parent;
+        super(parent, letter, x, y);
 
-        this.letter = letter;
-
-        let sprite = new PIXI.Sprite(pwBlock);
-        sprite.width = 60;
-        sprite.height = 60;
-        sprite.position.y = y;
-        sprite.position.x = x;
-        sprite.anchor.x = sprite.anchor.y = 0.5;
-
-        let text = new PIXI.Text(letter.toUpperCase(), {fontFamily : 'Arial', fontSize: 100});
+        let text = new PIXI.Text(this.letter, {fontFamily : 'Arial', fontSize: 100});
         text.anchor.x = text.anchor.y = 0.5;
-        sprite.addChild(text);
+        this.sprite.addChild(text);
 
-        sprite.interactive = true;
-        sprite.on('pointerdown', (event) => this.onClick(this));
+        this.sprite.interactive = true;
+        this.sprite.on('pointerdown', (event) => this.onClick(this));
 
-        this.sprite = sprite;
         this.isAlive = true;
     }
 
@@ -83,6 +75,17 @@ class LetterBlock {
     }
 }
 
+class WrongLetterBlock extends LetterBlock {
+    constructor(parent, letter, x, y) {
+        super(parent, letter, x, y);
+
+        let text = new PIXI.Text(this.letter, {fontFamily : 'Arial', fontSize: 100});
+        text.anchor.x = text.anchor.y = 0.5;
+        this.sprite.addChild(text);
+        this.sprite.tint = 0xf5997f;
+    }
+}
+
 class Hangman extends Game {
     constructor(parent, desktop) {
         super(parent, desktop);
@@ -95,17 +98,19 @@ class Hangman extends Game {
         if (rand >= PASSWORDS.length) {
             rand = PASSWORDS.length - 1;
         }
-        this.password = PASSWORDS[rand];
+        this.password = PASSWORDS[rand].toUpperCase();
         this.letterBlocks = [];
-        this.gameWon = false;
+        this.gameOver = false;
         this.timer = 10;
+        this.wrongLetters = "";
+
 
         this.initObjects();
     }
 
     //  TODO: Put proper win reward
     winGame() {
-        this.gameWon = true;
+        this.gameOver = true;
 
         //  Destroy all letter blocks
         for (let i = 0; i < this.letterBlocks.length; i++) {
@@ -124,7 +129,7 @@ class Hangman extends Game {
                 continue;
             }
 
-            if (password[i].toUpperCase() == letter.toUpperCase()) {
+            if (password[i] == letter) {
                 this.passwordBlocks[i].revealLetter();
                 revealedLetters++;
             }
@@ -133,6 +138,16 @@ class Hangman extends Game {
         if (revealedLetters == password.length) {
             this.winGame();
             return;
+        }
+
+        //  Check if letter is wrong
+        if (!this.password.includes(letter)) {
+            if (!this.wrongLetters.includes(letter)) {
+                this.initWrongLetterBlock(letter);
+                if (this.wrongLetters.length == this.password.length) {
+                    super.gameOver();
+                }
+            }
         }
 
         this.removeBlock(letterBlock);
@@ -166,12 +181,20 @@ class Hangman extends Game {
         return str[rand];
     }
 
+    //  Create wrong letter block
+    initWrongLetterBlock(letter) {
+        let x = 50 + this.wrongLetters.length * 65;
+        let block = new WrongLetterBlock(this, letter, x, 120);
+        this.parent.stage.addChild(block.sprite);
+        this.wrongLetters += letter;
+    }
+
     //  Create a letter block
     initLetterBlock() {
         //  x range: 50 -> innerWidth - 50
-        //  y range: 120 -> innerHeight - 150
+        //  y range: 200 -> innerHeight - 150
         let x = 50 + Math.random() * (window.innerWidth - 100);
-        let y = 120 + Math.random() * (window.innerHeight - 270);
+        let y = 200 + Math.random() * (window.innerHeight - 350);
 
         //  Pick letter
         let letter;
@@ -184,7 +207,7 @@ class Hangman extends Game {
             letter = this.pickRandomLetter(alpha);
         }
 
-        let block = new LetterBlock(this, letter, x, y);
+        let block = new RandomLetterBlock(this, letter, x, y);
     
         this.parent.stage.addChild(block.sprite);
         this.letterBlocks.push(block);
@@ -199,7 +222,7 @@ class Hangman extends Game {
     }
 
     update(timestamp) {
-        if (this.gameWon) {
+        if (this.gameOver) {
             return;
         }
 
