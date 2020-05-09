@@ -27,10 +27,25 @@ class Piece {
         this.sprite = sprite;
 
         this.location = {i: null, j: null};
+        this.fadeIn = false;
     }
 
     onClick(object) {
         this.parent.checkPiece(object);
+    }
+
+    startFadeIn() {
+        this.sprite.alpha = 0;
+        this.fadeIn = true;
+    }
+
+    update() {
+        if (this.fadeIn) {
+            this.sprite.alpha += .025;
+            if (this.sprite.alpha >= 1) {
+                this.fadeIn = false;
+            }
+        }
     }
 }
 
@@ -185,12 +200,28 @@ class Slider extends Game {
 
         //  Game is won
         this.gameWon = true;
+
         //  Add final piece
         const x0 = this.x0;
         const y0 = this.y0;
         this.finalPiece.sprite.position.x = x0 + 2 * (this.s + this.border);
         this.finalPiece.sprite.position.y = y0 + 2 * (this.s + this.border);
+        this.finalPiece.startFadeIn();
+        this.puzzle[2][2] = this.finalPiece;
         this.puzzleContainer.addChild(this.finalPiece.sprite);
+    }
+
+    update(timestamp) {
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                const piece = this.puzzle[i][j];
+                if (piece == null) {
+                    continue;
+                } else {
+                    piece.update();
+                }
+            }
+        }
     }
 }
 
