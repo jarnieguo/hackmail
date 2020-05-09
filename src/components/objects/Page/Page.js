@@ -4,7 +4,7 @@ import {
     Mesh,
     TextureLoader
 } from 'three';
-import TEXTURE from './page2.png';
+import TEXTURE from './page.png';
 
 class Page extends Mesh {
     constructor() {
