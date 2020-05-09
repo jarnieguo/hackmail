@@ -15,7 +15,7 @@ const canvas2d = app2d.view;
 
 
 // init
-document.body.appendChild(canvas3d);
+document.body.appendChild(canvas2d);
 
 
 
