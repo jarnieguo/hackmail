@@ -170,6 +170,13 @@ class Hangman extends Game {
         }
 
         this.objects.push(this.passwordContainer);
+
+        //  Reveal one of the tiles
+        let rand = Math.floor(Math.random() * this.password.length);
+        if (rand >= this.password.length) {
+            rand = this.password.length - 1;
+        }
+        this.passwordBlocks[rand].revealLetter();
     }
 
     //  pick random char from string
