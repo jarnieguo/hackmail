@@ -8,7 +8,7 @@ import {
 import TEXTURE from './wall-1.jpg';
 
 class Wall extends Mesh {
-    constructor(x, y, z, rotation) {
+    constructor(x, y, z, rotationX, rotationY) {
         const loader = new TextureLoader();
         let texture = loader.load(TEXTURE);
         texture.wrapS = texture.wrapT = RepeatWrapping;
@@ -18,11 +18,12 @@ class Wall extends Mesh {
             color: 0x8b8c8b,
             map: texture,
         });
-        const geometry = new PlaneBufferGeometry(30, 30);
+        const geometry = new PlaneBufferGeometry(40, 40);
         super(geometry, material);
 
         this.position.set(x, y, z);
-        this.rotation.x = rotation;
+        this.rotation.x = rotationX;
+        this.rotation.y = rotationY;
     }
 }
 

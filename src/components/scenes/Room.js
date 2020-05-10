@@ -14,7 +14,11 @@ class Room extends Scene {
         objects.push(new BasicLights());
         objects.push(new Computer());
         objects.push(new Floor());
-        objects.push(new Wall(0, 0, -5, 0));
+        objects.push(new Wall(0, 0, -3, 0, 0));
+        objects.push(new Wall(0, 0, 20, Math.PI, 0));
+        objects.push(new Wall(-20, 0, 0, 0, Math.PI/2));
+        objects.push(new Wall(20, 0, 0, 0, -Math.PI/2));
+
         objects.push(new Notebook());
 
         this.open = false;
@@ -26,7 +30,7 @@ class Room extends Scene {
     }
 
     //  Handle onClick events
-    onClick(event, objects) {
+    onClick(camera, objects) {
         //  Something is open; close it
         if (this.open) {
             this.page.setVisible(false);
@@ -42,6 +46,7 @@ class Room extends Scene {
                 if (cur.name == "notebook") {
                     //  Open page
                     this.open = true;
+                    this.page.positionToCamera(camera);
                     this.page.setVisible(true);
                     return;
                 } else if (cur.name == 'computer') {

@@ -17,16 +17,16 @@ class Page extends Mesh {
         const geometry = new PlaneBufferGeometry(1, 1);
         super(geometry, material);
 
-        this.position.y = 1;
-        this.position.z = 1;
-        this.rotation.x = -.5;
-        this.scale.multiplyScalar(3);
-
         this.visible = false;
     }
 
     setVisible(visible) {
         this.visible = visible;
+    }
+
+    positionToCamera(camera) {
+        this.quaternion.copy(camera.quaternion);
+        this.position.copy(camera.position.clone().multiplyScalar(.8));
     }
 }
 
