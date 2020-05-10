@@ -80,10 +80,11 @@ class Game {
         this.objects.push(exitButton);
 
         // Show label on top bar idk
-        const barLabel = new PIXI.Text(this.label, this.textStyle);
+        const barLabel = new PIXI.Text(this.label + "   games won: " + this.desktop.gamesWon, this.textStyle);
         barLabel.x = 10;
         barLabel.y = 15;
         this.objects.push(barLabel);
+
     }
 
     infoBox(header, text, imgName) {
@@ -99,8 +100,6 @@ class Game {
       const headerTxt = new PIXI.Text(header);
       const bodyTxt = new PIXI.Text(text);
 
-      const img = new PIXI.Sprite(PIXI.Texture.from(imgName));
-
       headerTxt.position.x = bodyTxt.position.x = rect.width/2;
       headerTxt.position.y = rect.height * 0.1;
       bodyTxt.position.y = rect.height * 0.3;
@@ -108,7 +107,11 @@ class Game {
       headerTxt.anchor.x = bodyTxt.anchor.x = 0.5;
       headerTxt.anchor.y = bodyTxt.anchor.y = 0.5;
 
-      rect.addChild(img);
+      if (imgName !== undefined) {
+        const img = new PIXI.Sprite(PIXI.Texture.from(imgName));
+        rect.addChild(img);
+      }
+
       rect.addChild(headerTxt);
       rect.addChild(bodyTxt);
 
@@ -118,6 +121,12 @@ class Game {
     gameOver() {
       this.infoBox("", "", GAMEOVER);
       this.active = false;
+    }
+
+    win() {
+      this.infoBox("YOU WIN", "");
+      this.active = false;
+      this.desktop.gamesWon++;
     }
 
 }

@@ -14,7 +14,15 @@ class Desktop {
             pad: 50
         };
 
-        // this.initObjects();
+
+        this.gamesWon = 0;
+
+
+        this.initObjects();
+    }
+
+    initObjects() {
+      this.initTopBar();
     }
 
     stage() {
@@ -63,6 +71,22 @@ class Desktop {
         label.y = button.y + this.grid.w;
 
         this.objects.push(button, label);
+    }
+
+    initTopBar() {
+        // Top bar
+        // const topBar = new PIXI.Graphics();
+        // topBar.beginFill(0xc8eaf7);
+        // topBar.drawRect(0, 0, window.innerWidth, 70);
+        // topBar.endFill();
+        // this.objects.push(topBar);
+
+        // Show label on top bar idk
+        const barLabel = new PIXI.Text("Games Won: " + this.gamesWon, this.textStyle);
+        barLabel.x = 10;
+        barLabel.y = 15;
+        this.objects.push(barLabel);
+
     }
 
     // initObjects() {
