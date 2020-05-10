@@ -1,5 +1,6 @@
 import * as PIXI from 'pixi.js';
 import IMAGE from './ex.png';
+import GAMEOVER from './gameover.png';
 import EXIT from './exit.png';
 
 //
@@ -85,18 +86,20 @@ class Game {
         this.objects.push(barLabel);
     }
 
-    infoBox(header, text) {
+    infoBox(header, text, imgName) {
 
       const rect = new PIXI.Graphics();
       // Rectangle
-      rect.beginFill(0xc8eaf7);
-      rect.drawRect(0, 0, 500, 300);
-      rect.endFill();
+      // rect.beginFill(0xc8eaf7);
+      // rect.drawRect(0, 0, 500, 300);
+      // rect.endFill();
 
       rect.x = rect.y = 300;
 
       const headerTxt = new PIXI.Text(header);
       const bodyTxt = new PIXI.Text(text);
+
+      const img = new PIXI.Sprite(PIXI.Texture.from(imgName));
 
       headerTxt.position.x = bodyTxt.position.x = rect.width/2;
       headerTxt.position.y = rect.height * 0.1;
@@ -105,6 +108,7 @@ class Game {
       headerTxt.anchor.x = bodyTxt.anchor.x = 0.5;
       headerTxt.anchor.y = bodyTxt.anchor.y = 0.5;
 
+      rect.addChild(img);
       rect.addChild(headerTxt);
       rect.addChild(bodyTxt);
 
@@ -112,7 +116,7 @@ class Game {
     }
 
     gameOver() {
-      this.infoBox("Game Over", "you suck!");
+      this.infoBox("", "", GAMEOVER);
       this.active = false;
     }
 
