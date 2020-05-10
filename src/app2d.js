@@ -6,6 +6,7 @@ import {
     TextBubbleGame,
     Hangman
 } from 'stages';
+import { Slider } from './components/stages';
 
 
 // Set up renderer
@@ -23,9 +24,10 @@ const desktop = new Desktop(app);
 const games = {
     // 'game1': new Test(app, desktop),
     // 'game2': new Test2(app, desktop),
-    'game3': new Test(app, desktop),
+    // 'game3': new Test(app, desktop),
     'textbubblegame': new TextBubbleGame(app, desktop),
-    'hangman': new Hangman(app, desktop)
+    'hangman': new Hangman(app, desktop),
+    'slider': new Slider(app, desktop)
 };
 desktop.addGames(games);
 
