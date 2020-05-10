@@ -56,7 +56,7 @@ const onClick = (event) => {
     raycaster.setFromCamera(mouse, camera);
     const intersects = raycaster.intersectObjects(scene.children, true);
     //  Pass onClick to Room scene
-    const res = scene.onClick(event, intersects);
+    const res = scene.onClick(camera, intersects);
     if (res) {
         //  Tell App to toggle to 2D
         return true;

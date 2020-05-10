@@ -26,7 +26,7 @@ class Room extends Scene {
     }
 
     //  Handle onClick events
-    onClick(event, objects) {
+    onClick(camera, objects) {
         //  Something is open; close it
         if (this.open) {
             this.page.setVisible(false);
@@ -42,6 +42,7 @@ class Room extends Scene {
                 if (cur.name == "notebook") {
                     //  Open page
                     this.open = true;
+                    this.page.positionToCamera(camera);
                     this.page.setVisible(true);
                     return;
                 } else if (cur.name == 'computer') {
