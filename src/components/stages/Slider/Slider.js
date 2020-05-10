@@ -27,7 +27,14 @@ class Piece {
         this.sprite = sprite;
 
         this.location = {i: null, j: null};
+
         this.fadeIn = false;
+
+        this.move = false;
+        this.moveFrom = {x: null, y: null};
+        this.moveTo = {x: null, y: null};
+        this.moveTime = 15;
+        this.curTime = null;
     }
 
     onClick(object) {
@@ -39,11 +46,30 @@ class Piece {
         this.fadeIn = true;
     }
 
+    startMoveTo(x, y) {
+        this.move = true;
+        this.moveTo.x = x;
+        this.moveTo.y = y;
+        this.moveFrom.x = this.sprite.position.x;
+        this.moveFrom.y = this.sprite.position.y;
+        this.curTime = 0;
+    }
+
     update() {
         if (this.fadeIn) {
-            this.sprite.alpha += .025;
+            this.sprite.alpha += .010;
             if (this.sprite.alpha >= 1) {
                 this.fadeIn = false;
+            }
+        }
+
+        if (this.move) {
+            this.sprite.position.x = this.moveFrom.x + (this.curTime / this.moveTime) * (this.moveTo.x - this.moveFrom.x);
+            this.sprite.position.y = this.moveFrom.y + (this.curTime / this.moveTime) * (this.moveTo.y - this.moveFrom.y);
+            this.curTime++;
+            if (this.curTime > this.moveTime) {
+                this.parent.setIsMoving(false);
+                this.move = false;
             }
         }
     }
@@ -61,6 +87,8 @@ class Slider extends Game {
         this.border = 2;
         this.x0 = 100;
         this.y0 = 100;
+
+        this.isMoving = false;
 
         this.gameWon = false;
 
@@ -88,15 +116,10 @@ class Slider extends Game {
         pieces.push(new Piece(this, PIECE9, 9, s));
 
         //  TODO? randomize
-        // const positions = [
-        //     [8, 4, 2],
-        //     [1, null, 3],
-        //     [7, 6, 5],
-        // ];
         const positions = [
-            [1, 2, 3],
-            [4, 5, 6],
-            [7, null, 8],
+            [8, 4, 2],
+            [1, null, 3],
+            [7, 6, 5],
         ];
 
         //  Position the pieces
@@ -129,10 +152,14 @@ class Slider extends Game {
 
         this.objects.push(this.puzzleContainer);
     }
-    
+
+    setIsMoving(isMoving) {
+        this.isMoving = isMoving;
+    }
+     
     //  Check a puzzle piece and slide if applicable
     checkPiece(piece) {
-        if (this.gameWon) {
+        if (this.gameWon || this.isMoving) {
             return;
         }
 
@@ -160,13 +187,16 @@ class Slider extends Game {
 
     //  Move a piece
     movePiece(piece, i, j, iNew, jNew) {
+        this.isMoving = true;
+
         this.puzzle[i][j] = null;
         this.puzzle[iNew][jNew] = piece;
         piece.location.i = iNew;
         piece.location.j = jNew;
 
-        piece.sprite.position.x += (jNew - j) * (this.s + this.border);
-        piece.sprite.position.y += (iNew - i) * (this.s + this.border);
+        const x = piece.sprite.position.x + (jNew - j) * (this.s + this.border);
+        const y = piece.sprite.position.y + (iNew - i) * (this.s + this.border);
+        piece.startMoveTo(x, y);
     }
 
     //  Is the location the empty piece?
