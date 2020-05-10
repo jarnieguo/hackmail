@@ -91,7 +91,7 @@ class TextBubbleGame extends Game {
 
     init() {
       this.score = 0;
-      this.lives = 5;
+      this.lives = 3;
     }
 
     initObjects() {
@@ -155,7 +155,7 @@ class TextBubbleGame extends Game {
       if (this.lives <= 0) {
         super.gameOver();
       }
-      if (this.score >= 2) {
+      if (this.score >= 10) {
         super.win();
       }
 

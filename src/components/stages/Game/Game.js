@@ -1,5 +1,6 @@
 import * as PIXI from 'pixi.js';
 import IMAGE from './ex.png';
+import DIALOG from './dialog.png';
 import GAMEOVER from './gameover.png';
 import EXIT from './exit.png';
 
@@ -90,12 +91,13 @@ class Game {
     infoBox(header, text, imgName) {
 
       const rect = new PIXI.Graphics();
+      // rect.anchor.set(0.5, 0.5);
       // Rectangle
       // rect.beginFill(0xc8eaf7);
       // rect.drawRect(0, 0, 500, 300);
       // rect.endFill();
-
-      rect.x = rect.y = 300;
+      rect.x = window.innerWidth/2;
+      rect.y = window.innerHeight/2;
 
       const headerTxt = new PIXI.Text(header);
       const bodyTxt = new PIXI.Text(text);
@@ -107,8 +109,13 @@ class Game {
       headerTxt.anchor.x = bodyTxt.anchor.x = 0.5;
       headerTxt.anchor.y = bodyTxt.anchor.y = 0.5;
 
+      const dia = new PIXI.Sprite(PIXI.Texture.from(DIALOG));
+      dia.anchor.set(0.5, 0.5);
+      rect.addChild(dia);
+
       if (imgName !== undefined) {
         const img = new PIXI.Sprite(PIXI.Texture.from(imgName));
+        img.anchor.set(0.5, 0.5);
         rect.addChild(img);
       }
 
