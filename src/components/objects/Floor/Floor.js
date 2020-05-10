@@ -18,7 +18,7 @@ class Floor extends Mesh {
             color: 0x404761,
             map: texture,
         });
-        const geometry = new PlaneBufferGeometry(30, 30);
+        const geometry = new PlaneBufferGeometry(40, 40);
         super(geometry, material);
 
         //  Put floor in correct position
