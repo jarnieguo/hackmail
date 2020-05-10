@@ -36,6 +36,8 @@ desktop.stage();
 // Render loop
 const onAnimationFrameHandler = (timeStamp) => {
 
+    desktop.update(timeStamp);
+
     for (let gameName in games) {
       if (games[gameName].active) {
         games[gameName].update(timeStamp);

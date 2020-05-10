@@ -82,16 +82,12 @@ class Desktop {
         // this.objects.push(topBar);
 
         // Show label on top bar idk
-        const barLabel = new PIXI.Text("Games Won: " + this.gamesWon, this.textStyle);
-        barLabel.x = 10;
-        barLabel.y = 15;
-        this.objects.push(barLabel);
+        this.barLabel = new PIXI.Text("Games Won: " + this.gamesWon, this.textStyle);
+        this.barLabel.x = 10;
+        this.barLabel.y = 15;
+        this.objects.push(this.barLabel);
 
     }
-
-    // initObjects() {
-    // }
-
 
     // onClick(object) {
     //     object.tint = 0x333333;
@@ -103,6 +99,10 @@ class Desktop {
 
     onPointerOut(object) {
         object.tint = 0xFFFFFF;
+    }
+
+    update(timeStamp) {
+      this.barLabel.text = "Games Won: " + this.gamesWon;
     }
 
 }

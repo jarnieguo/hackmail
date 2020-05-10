@@ -11,7 +11,7 @@ const pwBlock = PIXI.Texture.from(PWBLOCK);
 class LetterBlock {
     constructor(parent, letter, x, y) {
         this.parent = parent;
-        this.letter = letter.toUpperCase(); 
+        this.letter = letter.toUpperCase();
 
         let sprite = new PIXI.Sprite(pwBlock);
         sprite.width = 60;
@@ -116,6 +116,8 @@ class Hangman extends Game {
         for (let i = 0; i < this.letterBlocks.length; i++) {
             this.removeBlock(this.letterBlocks[i]);
         }
+
+        super.win();
     }
 
     //  Check if this letterBlock corresponds to a letter in the password
@@ -215,7 +217,7 @@ class Hangman extends Game {
         }
 
         let block = new RandomLetterBlock(this, letter, x, y);
-    
+
         this.parent.stage.addChild(block.sprite);
         this.letterBlocks.push(block);
     }

@@ -156,7 +156,7 @@ class Slider extends Game {
     setIsMoving(isMoving) {
         this.isMoving = isMoving;
     }
-     
+
     //  Check a puzzle piece and slide if applicable
     checkPiece(piece) {
         if (this.gameWon || this.isMoving) {
@@ -202,7 +202,7 @@ class Slider extends Game {
     //  Is the location the empty piece?
     isEmptyPiece(i, j) {
         if (i < 0 || i >= 3) {
-            return false; 
+            return false;
         }
         if (j < 0 || j >= 3) {
             return false;
@@ -239,6 +239,8 @@ class Slider extends Game {
         this.finalPiece.startFadeIn();
         this.puzzle[2][2] = this.finalPiece;
         this.puzzleContainer.addChild(this.finalPiece.sprite);
+
+        super.win();
     }
 
     update(timestamp) {

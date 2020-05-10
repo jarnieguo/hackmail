@@ -69,7 +69,7 @@ class TextBubbleGame extends Game {
 
         this.setBgColor(0xFFFFFF);
         this.setIcon(bubbleIcon);
-        this.setLabel("text bubble game");
+        this.setLabel("Text Bubbles");
 
         this.bubbles = [];
 
@@ -154,6 +154,9 @@ class TextBubbleGame extends Game {
 
       if (this.lives <= 0) {
         super.gameOver();
+      }
+      if (this.score >= 2) {
+        super.win();
       }
 
     }
