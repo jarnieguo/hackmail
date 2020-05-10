@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js';
 import IMAGE from './ex.png';
 import DIALOG from './dialog.png';
 import GAMEOVER from './gameover.png';
+import YOUWIN from './youWin.png';
 import EXIT from './exit.png';
 
 //
@@ -131,7 +132,7 @@ class Game {
     }
 
     win() {
-      this.infoBox("YOU WIN", "");
+      this.infoBox("", "", YOUWIN);
       this.active = false;
       this.desktop.gamesWon++;
     }

@@ -155,7 +155,7 @@ class TextBubbleGame extends Game {
       if (this.lives <= 0) {
         super.gameOver();
       }
-      if (this.score >= 10) {
+      if (this.score >= 1) {
         super.win();
       }
 
