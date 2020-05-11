@@ -30,9 +30,7 @@ camera.lookAt(new Vector3(0, 0, 0));
 renderer.setPixelRatio(window.devicePixelRatio);
 const canvas = renderer.domElement;
 canvas.style.display = 'block'; // Removes padding below canvas
-document.body.style.margin = 0; // Removes margin around page
-document.body.style.overflow = 'hidden'; // Fix scrolling
-// document.body.appendChild(canvas);
+
 
 // Set up controls
 const controls = new OrbitControls(camera, canvas);

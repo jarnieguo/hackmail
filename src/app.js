@@ -14,10 +14,6 @@ import {
 const canvas2d = app2d.view;
 
 
-// init
-document.body.appendChild(canvas3d);
-
-
 
 // Toggle between 2D and 3D mode
 let in3d = true;
@@ -42,7 +38,6 @@ const onClickHandler = (event) => {
         // no onclick handler for 2d yet ???
     }
 };
-window.addEventListener('click', onClickHandler, false);
 
 
 const onKeyDownHandler = (event) => {
@@ -56,7 +51,6 @@ const onKeyDownHandler = (event) => {
         }
     }
 };
-window.addEventListener('keydown', onKeyDownHandler, false);
 
 // Render loop
 const onAnimationFrameHandler = (timeStamp) => {
@@ -69,7 +63,7 @@ const onAnimationFrameHandler = (timeStamp) => {
     }
     window.requestAnimationFrame(onAnimationFrameHandler);
 };
-window.requestAnimationFrame(onAnimationFrameHandler);
+
 
 // Resize Handler
 const windowResizeHandler = () => {
@@ -78,5 +72,26 @@ const windowResizeHandler = () => {
     resizeHandler3d(innerWidth, innerHeight);
     // app2d.renderer.resize(innerWidth, innerHeight);
 };
-windowResizeHandler();
-window.addEventListener('resize', windowResizeHandler, false);
+
+
+
+
+const startGame = () => {
+
+    document.body.removeChild(document.getElementById("landing"));
+
+    document.body.appendChild(canvas3d);
+    document.body.style.margin = 0;
+    document.body.style.overflow = 'hidden';
+
+    window.requestAnimationFrame(onAnimationFrameHandler);
+
+    windowResizeHandler();
+    window.addEventListener('resize', windowResizeHandler, false);
+
+    window.addEventListener('click', onClickHandler, false);
+    window.addEventListener('keydown', onKeyDownHandler, false);
+};
+
+document.getElementById("start").onmouseup = startGame;
+
