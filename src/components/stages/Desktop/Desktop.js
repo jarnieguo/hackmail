@@ -9,7 +9,7 @@ class Desktop {
         this.objects = [];
 
         this.bgColor = 0xffdace;
-        this.textStyle = new PIXI.TextStyle({ fill: '#000000' });
+        this.textStyle = new PIXI.TextStyle({ fill: '#000000', fontSize: 18 });
 
         this.grid = {
             w: 100,
@@ -31,7 +31,7 @@ class Desktop {
         // this.parent.renderer.backgroundColor = this.bgColor;
         const texture = new PIXI.Texture.from(BACKIMG);
         let sprite = new PIXI.Sprite(texture);
- 
+
         sprite.anchor.x = 0;
         sprite.anchor.y = 0;
         sprite.width = this.parent.renderer.width;
