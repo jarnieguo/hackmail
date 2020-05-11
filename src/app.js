@@ -17,6 +17,13 @@ const canvas2d = app2d.view;
 let inGame = false;
 let in3d = true;
 
+var audio = new Audio('./426.mp3');
+
+audio.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+}, false);
+
 // Toggle between 2D and 3D mode
 const toggleMode = () => {
     if (!inGame) { return; }
@@ -101,6 +108,7 @@ const windowResizeHandler = () => {
 
     $("#game").click(onClickHandler);
     $(window).on('keydown', onKeyDownHandler);
+    audio.play();
  };
 
 
