@@ -60,6 +60,8 @@ class Piece {
             this.sprite.alpha += .010;
             if (this.sprite.alpha >= 1) {
                 this.fadeIn = false;
+                //  Once this animation is done, win
+                this.parent.winGame();
             }
         }
 
@@ -239,7 +241,9 @@ class Slider extends Game {
         this.finalPiece.startFadeIn();
         this.puzzle[2][2] = this.finalPiece;
         this.puzzleContainer.addChild(this.finalPiece.sprite);
+    }
 
+    winGame() {
         super.win();
     }
 
