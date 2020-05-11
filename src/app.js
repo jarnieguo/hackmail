@@ -16,8 +16,6 @@ const canvas2d = app2d.view;
 
 // init
 document.body.appendChild(canvas3d);
-var audio = new Audio('./426.mp3');
-audio.play();
 
 
 
