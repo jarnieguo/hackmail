@@ -76,8 +76,12 @@ const onClick = (event) => {
 // Render loop
 const onAnimationFrameHandler = (timeStamp) => {
     controls.update();
-    renderer.render(scene, camera);
+    render();
     scene.update && scene.update(timeStamp);
+};
+
+const render = () => {
+    renderer.render(scene, camera);
 };
 
 // Resize Handler
@@ -90,6 +94,7 @@ const windowResizeHandler = (innerWidth, innerHeight) => {
 export {
     canvas,
     onClick,
+    render,
     onAnimationFrameHandler,
     windowResizeHandler,
 };
