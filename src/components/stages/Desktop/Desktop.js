@@ -1,5 +1,7 @@
 import * as PIXI from 'pixi.js';
 
+import BACKIMG from './backimg.png';
+
 
 class Desktop {
     constructor(parent) {
@@ -26,7 +28,16 @@ class Desktop {
     }
 
     stage() {
-        this.parent.renderer.backgroundColor = this.bgColor;
+        // this.parent.renderer.backgroundColor = this.bgColor;
+        const texture = new PIXI.Texture.from(BACKIMG);
+        let sprite = new PIXI.Sprite(texture);
+ 
+        sprite.anchor.x = 0;
+        sprite.anchor.y = 0;
+        sprite.width = this.parent.renderer.width;
+        sprite.height = this.parent.renderer.height;
+
+        this.parent.stage.addChild(sprite);
         this.parent.stage.addChild(...this.objects);
     }
 
