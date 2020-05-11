@@ -46,6 +46,11 @@ const onClickHandler = (event) => {
 const onKeyDownHandler = (event) => {
     if (!inGame) { return; }
 
+    if (event.code === 'KeyP') {
+        showInstructions();
+        return;
+    }
+
     if (in3d) {
         // call 3d keydown handler
     }
