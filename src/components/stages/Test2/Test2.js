@@ -12,7 +12,7 @@ class Test2 extends Game {
 
         this.setBgColor(0x000000);
         this.setIcon(PIXI.Texture.from(ICON));
-        this.setLabel("not game");
+        this.setLabel('not game');
 
         this.initObjects();
     }
@@ -21,7 +21,6 @@ class Test2 extends Game {
         super.initObjects();
         this.initBasicScene();
     }
-
 
     initBasicScene() {
         this.basicScene = new PIXI.Container();
@@ -37,7 +36,9 @@ class Test2 extends Game {
 
         starButton1.on('pointerdown', (event) => this.onClick(starButton1));
 
-        starButton1.on('pointerover', (event) => this.onPointerOver(starButton1));
+        starButton1.on('pointerover', (event) =>
+            this.onPointerOver(starButton1)
+        );
 
         starButton1.on('pointerout', (event) => this.onPointerOut(starButton1));
 
@@ -48,23 +49,35 @@ class Test2 extends Game {
         // Create a hitarea that matches the sprite, which will be used for point
         // intersection
         starButton2.hitArea = new PIXI.Polygon([
-            80, 0,
-            100, 50,
-            160, 55,
-            115, 95,
-            130, 150,
-            80, 120,
-            30, 150,
-            45, 95,
-            0, 55,
-            60, 50,
+            80,
+            0,
+            100,
+            50,
+            160,
+            55,
+            115,
+            95,
+            130,
+            150,
+            80,
+            120,
+            30,
+            150,
+            45,
+            95,
+            0,
+            55,
+            60,
+            50,
         ]);
         starButton2.buttonMode = true;
         starButton2.interactive = true;
 
         starButton2.on('pointerdown', (event) => this.onClick(starButton2));
 
-        starButton2.on('pointerover', (event) => this.onPointerOver(starButton2));
+        starButton2.on('pointerover', (event) =>
+            this.onPointerOver(starButton2)
+        );
 
         starButton2.on('pointerout', (event) => this.onPointerOut(starButton2));
 
@@ -77,7 +90,7 @@ class Test2 extends Game {
         starButton3.interactive = true;
 
         const squareMask = new PIXI.Graphics()
-            .beginFill(0xFFFFFF)
+            .beginFill(0xffffff)
             .drawRect(starButton3.x, starButton3.y, 75, 200)
             .endFill();
 
@@ -85,7 +98,9 @@ class Test2 extends Game {
 
         starButton3.on('pointerdown', (event) => this.onClick(starButton3));
 
-        starButton3.on('pointerover', (event) => this.onPointerOver(starButton3));
+        starButton3.on('pointerover', (event) =>
+            this.onPointerOver(starButton3)
+        );
 
         starButton3.on('pointerout', (event) => this.onPointerOut(starButton3));
 
@@ -96,7 +111,7 @@ class Test2 extends Game {
         starButton4.position.set(600, 200);
 
         const squareMask2 = new PIXI.Graphics()
-            .beginFill(0xFFFFFF)
+            .beginFill(0xffffff)
             .drawRect(starButton4.x, starButton4.y, 75, 200)
             .endFill();
 
@@ -104,23 +119,35 @@ class Test2 extends Game {
 
         // Again, hitarea for intersection checks
         starButton4.hitArea = new PIXI.Polygon([
-            80, 0,
-            100, 50,
-            160, 55,
-            115, 95,
-            130, 150,
-            80, 120,
-            30, 150,
-            45, 95,
-            0, 55,
-            60, 50,
+            80,
+            0,
+            100,
+            50,
+            160,
+            55,
+            115,
+            95,
+            130,
+            150,
+            80,
+            120,
+            30,
+            150,
+            45,
+            95,
+            0,
+            55,
+            60,
+            50,
         ]);
         starButton4.buttonMode = true;
         starButton4.interactive = true;
 
         starButton4.on('pointerdown', (event) => this.onClick(starButton4));
 
-        starButton4.on('pointerover', (event) => this.onPointerOver(starButton4));
+        starButton4.on('pointerover', (event) =>
+            this.onPointerOver(starButton4)
+        );
 
         starButton4.on('pointerout', (event) => this.onPointerOut(starButton4));
 
@@ -166,15 +193,8 @@ class Test2 extends Game {
     }
 
     onPointerOut(object) {
-        object.tint = 0xFFFFFF;
+        object.tint = 0xffffff;
     }
-
 }
 
-
-
-
-
-export {
-    Test2
-};
+export { Test2 };

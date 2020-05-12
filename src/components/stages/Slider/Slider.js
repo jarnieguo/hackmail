@@ -26,13 +26,13 @@ class Piece {
 
         this.sprite = sprite;
 
-        this.location = {i: null, j: null};
+        this.location = { i: null, j: null };
 
         this.fadeIn = false;
 
         this.move = false;
-        this.moveFrom = {x: null, y: null};
-        this.moveTo = {x: null, y: null};
+        this.moveFrom = { x: null, y: null };
+        this.moveTo = { x: null, y: null };
         this.moveTime = 15;
         this.curTime = null;
     }
@@ -57,7 +57,7 @@ class Piece {
 
     update() {
         if (this.fadeIn) {
-            this.sprite.alpha += .010;
+            this.sprite.alpha += 0.01;
             if (this.sprite.alpha >= 1) {
                 this.fadeIn = false;
                 //  Once this animation is done, win
@@ -66,8 +66,14 @@ class Piece {
         }
 
         if (this.move) {
-            this.sprite.position.x = this.moveFrom.x + (this.curTime / this.moveTime) * (this.moveTo.x - this.moveFrom.x);
-            this.sprite.position.y = this.moveFrom.y + (this.curTime / this.moveTime) * (this.moveTo.y - this.moveFrom.y);
+            this.sprite.position.x =
+                this.moveFrom.x +
+                (this.curTime / this.moveTime) *
+                    (this.moveTo.x - this.moveFrom.x);
+            this.sprite.position.y =
+                this.moveFrom.y +
+                (this.curTime / this.moveTime) *
+                    (this.moveTo.y - this.moveFrom.y);
             this.curTime++;
             if (this.curTime > this.moveTime) {
                 this.parent.setIsMoving(false);
@@ -81,9 +87,9 @@ class Slider extends Game {
     constructor(parent, desktop) {
         super(parent, desktop);
 
-        this.setBgColor(0xFFFFFF);
+        this.setBgColor(0xffffff);
         this.setIcon(PIXI.Texture.from(ICON));
-        this.setLabel("Slider");
+        this.setLabel('Slider');
 
         this.s = 100;
         this.border = 2;
@@ -125,11 +131,7 @@ class Slider extends Game {
         ];
 
         //  Position the pieces
-        let puzzle = [
-            [],
-            [],
-            [],
-        ];
+        let puzzle = [[], [], []];
         const x0 = this.x0;
         const y0 = this.y0;
         const border = this.border;
@@ -167,7 +169,7 @@ class Slider extends Game {
 
         //  Check for empty piece
         const i = piece.location.i;
-        const j = piece.location.j
+        const j = piece.location.j;
 
         if (this.isEmptyPiece(i - 1, j)) {
             //  Above

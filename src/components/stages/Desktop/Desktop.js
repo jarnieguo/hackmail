@@ -3,7 +3,6 @@ import * as PIXI from 'pixi.js';
 import BACKIMG from './backimg.png';
 import IMAGE from './ex.png';
 
-
 class Desktop {
     constructor(parent) {
         this.parent = parent;
@@ -14,19 +13,17 @@ class Desktop {
 
         this.grid = {
             w: 100,
-            pad: 50
+            pad: 50,
         };
 
-
         this.gamesWon = 0;
-
 
         this.initObjects();
     }
 
     initObjects() {
-      this.initTopBar();
-      this.initTestButton(); // debug
+        this.initTopBar();
+        this.initTestButton(); // debug
     }
 
     stage() {
@@ -56,7 +53,6 @@ class Desktop {
         }
     }
 
-
     displayGameIcon(game, index) {
         // Display img button
         const button = new PIXI.Sprite(game.icon);
@@ -65,7 +61,7 @@ class Desktop {
 
         // TODO: arrange icons in grid on screen (responsive??) by index
         // Currently arranges them in a single horizontal row
-        button.position.set(50 + index*(this.grid.w+this.grid.pad), 200);
+        button.position.set(50 + index * (this.grid.w + this.grid.pad), 200);
 
         button.buttonMode = true;
         button.interactive = true;
@@ -95,16 +91,18 @@ class Desktop {
         // this.objects.push(topBar);
 
         // Show label on top bar idk
-        this.barLabel = new PIXI.Text("Games Won: " + this.gamesWon, this.textStyle);
+        this.barLabel = new PIXI.Text(
+            'Games Won: ' + this.gamesWon,
+            this.textStyle
+        );
         this.barLabel.x = 10;
         this.barLabel.y = 15;
         this.objects.push(this.barLabel);
-
     }
 
     // increase win count im too lazy to play the games
     initTestButton() {
-         // Display img button
+        // Display img button
         const button = new PIXI.Sprite(new PIXI.Texture.from(IMAGE));
         button.width = 50;
         button.height = 50;
@@ -129,19 +127,12 @@ class Desktop {
     }
 
     onPointerOut(object) {
-        object.tint = 0xFFFFFF;
+        object.tint = 0xffffff;
     }
 
     update(timeStamp) {
-      this.barLabel.text = "Games Won: " + this.gamesWon;
+        this.barLabel.text = 'Games Won: ' + this.gamesWon;
     }
-
 }
 
-
-
-
-
-export {
-    Desktop
-};
+export { Desktop };
