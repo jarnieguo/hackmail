@@ -11,12 +11,15 @@ import {
     wonAllGames as finished,
     onAnimationFrameHandler as onAnimationFrameHandler2d,
 } from 'app2d';
+
+import MUSIC from './426.mp3';
+
 const canvas2d = app2d.view;
 
 let inGame = false;
 let in3d = true;
 
-const audio = new Audio('./426.mp3');
+const audio = new Audio(MUSIC);
 
 audio.addEventListener(
     'ended',
