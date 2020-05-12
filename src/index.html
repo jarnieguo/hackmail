@@ -27,11 +27,14 @@
             color: red;
         }
 
+        .screen {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+        }
+
         #landing {
-          position: fixed;
-          top: 25%;
-          left: 25%;
-          width: 50%;
         }
 
         .hackmail {
@@ -41,6 +44,10 @@
 
         #names {
           font-size: 16pt;
+        }
+
+        #credits {
+            display: none;
         }
 
         .dialog {
@@ -78,11 +85,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <div id="landing">
+    <div id="landing" class="screen">
         <div class="hackmail">hackmail</div>
         <p> <div id="names">by Abigail Rettew, Jamie Guo, Jessica Fielding, & Ze-Xin Koh </div></p>
 
-        <button id="play"> Play </button>
+        <button id="start"> Start </button>
+        <p>
+        <button onclick="$('#landing').hide();$('#credits').show();"> Credits </button>
+    </div>
+
+    <div id="credits" class="screen">
+        <h2>Credits</h2>
+        <ul>
+        <li><a href="https://threejs.org/">ThreeJS</a></li>
+        <li><a href="https://www.pixijs.com/">PixiJS</a></li>
+        <li><a href="https://sketchfab.com/3d-models/computer-desk-4-794432c692cc4bb599ff65ac5740f044">Desk</a></li>
+        <li><a href="https://poly.google.com/view/9Ptsg_xZt6B">Notebook</a></li>
+        <li><a href="https://sketchfab.com/3d-models/apple-iphone-7-7e82a204471e4ad2bd7595df7f9319da">Phone</a></li>
+        <li><a href="http://iphonefaketext.com/">Phone screen</a></li>
+        <li><a href="https://poly.google.com/view/aurlA5vCous">Lamp</a></li>
+        </ul>
+        <button onclick="$('#credits').hide();$('#landing').show();"> back </button>
     </div>
 
     <div id="instructions" class="dialog">
@@ -91,7 +114,7 @@
           affair!<br>
           Press P at any time to pause.
         </p>
-        <button id="start"> Start </button>
+        <button id="play"> Play! </button>
     </div>
 
     <div id="win" class="dialog">
