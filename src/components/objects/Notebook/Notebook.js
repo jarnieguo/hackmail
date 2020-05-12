@@ -9,15 +9,12 @@ class Notebook extends Group {
 
         this.name = 'notebook';
         const loader = new GLTFLoader();
-        loader.load(
-            MODEL,
-            (gltf) => {
-                gltf.scene.scale.multiplyScalar(.1);
-                gltf.scene.position.set(1.3, .1, .1);
-                // gltf.scene.position.set(0, .5, 0);
-                this.add(gltf.scene);
-            }
-        );
+        loader.load(MODEL, (gltf) => {
+            gltf.scene.scale.multiplyScalar(0.1);
+            gltf.scene.position.set(1.3, 0.1, 0.1);
+            // gltf.scene.position.set(0, .5, 0);
+            this.add(gltf.scene);
+        });
     }
 }
 

@@ -2,7 +2,7 @@ import {
     MeshStandardMaterial,
     PlaneBufferGeometry,
     Mesh,
-    TextureLoader
+    TextureLoader,
 } from 'three';
 import TEXTURE from './page.png';
 
@@ -26,7 +26,7 @@ class Page extends Mesh {
 
     positionToCamera(camera) {
         this.quaternion.copy(camera.quaternion);
-        this.position.copy(camera.position.clone().multiplyScalar(.8));
+        this.position.copy(camera.position.clone().multiplyScalar(0.8));
     }
 }
 

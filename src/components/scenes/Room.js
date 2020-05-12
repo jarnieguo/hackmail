@@ -16,8 +16,8 @@ class Room extends Scene {
         objects.push(new Floor());
         objects.push(new Wall(0, 0, -3, 0, 0));
         objects.push(new Wall(0, 0, 20, Math.PI, 0));
-        objects.push(new Wall(-20, 0, 0, 0, Math.PI/2));
-        objects.push(new Wall(20, 0, 0, 0, -Math.PI/2));
+        objects.push(new Wall(-20, 0, 0, 0, Math.PI / 2));
+        objects.push(new Wall(20, 0, 0, 0, -Math.PI / 2));
 
         objects.push(new Notebook());
 
@@ -37,13 +37,13 @@ class Room extends Scene {
             this.open = false;
             return;
         }
-        
+
         //  Check for collisions
         for (let i = 0; i < objects.length; i++) {
             let obj = objects[i].object;
             let cur = obj;
             while (cur != undefined) {
-                if (cur.name == "notebook") {
+                if (cur.name == 'notebook') {
                     //  Open page
                     this.open = true;
                     this.page.positionToCamera(camera);

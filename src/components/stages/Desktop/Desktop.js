@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js';
 
 import BACKIMG from './backimg.png';
-
+import IMAGE from './ex.png';
 
 class Desktop {
     constructor(parent) {
@@ -9,29 +9,28 @@ class Desktop {
         this.objects = [];
 
         this.bgColor = 0xffdace;
-        this.textStyle = new PIXI.TextStyle({ fill: '#000000' });
+        this.textStyle = new PIXI.TextStyle({ fill: '#000000', fontSize: 18 });
 
         this.grid = {
             w: 100,
-            pad: 50
+            pad: 50,
         };
 
-
         this.gamesWon = 0;
-
 
         this.initObjects();
     }
 
     initObjects() {
-      this.initTopBar();
+        this.initTopBar();
+        this.initTestButton(); // debug
     }
 
     stage() {
         // this.parent.renderer.backgroundColor = this.bgColor;
         const texture = new PIXI.Texture.from(BACKIMG);
         let sprite = new PIXI.Sprite(texture);
- 
+
         sprite.anchor.x = 0;
         sprite.anchor.y = 0;
         sprite.width = this.parent.renderer.width;
@@ -54,7 +53,6 @@ class Desktop {
         }
     }
 
-
     displayGameIcon(game, index) {
         // Display img button
         const button = new PIXI.Sprite(game.icon);
@@ -63,7 +61,7 @@ class Desktop {
 
         // TODO: arrange icons in grid on screen (responsive??) by index
         // Currently arranges them in a single horizontal row
-        button.position.set(50 + index*(this.grid.w+this.grid.pad), 200);
+        button.position.set(50 + index * (this.grid.w + this.grid.pad), 200);
 
         button.buttonMode = true;
         button.interactive = true;
@@ -93,11 +91,31 @@ class Desktop {
         // this.objects.push(topBar);
 
         // Show label on top bar idk
-        this.barLabel = new PIXI.Text("Games Won: " + this.gamesWon, this.textStyle);
+        this.barLabel = new PIXI.Text(
+            'Games Won: ' + this.gamesWon,
+            this.textStyle
+        );
         this.barLabel.x = 10;
         this.barLabel.y = 15;
         this.objects.push(this.barLabel);
+    }
 
+    // increase win count im too lazy to play the games
+    initTestButton() {
+        // Display img button
+        const button = new PIXI.Sprite(new PIXI.Texture.from(IMAGE));
+        button.width = 50;
+        button.height = 50;
+        button.position.set(50, 100);
+        button.buttonMode = true;
+        button.interactive = true;
+
+        button.on('pointerdown', (event) => {
+            this.gamesWon++;
+        });
+        button.on('pointerover', (event) => this.onPointerOver(button));
+        button.on('pointerout', (event) => this.onPointerOut(button));
+        this.objects.push(button);
     }
 
     // onClick(object) {
@@ -109,19 +127,12 @@ class Desktop {
     }
 
     onPointerOut(object) {
-        object.tint = 0xFFFFFF;
+        object.tint = 0xffffff;
     }
 
     update(timeStamp) {
-      this.barLabel.text = "Games Won: " + this.gamesWon;
+        this.barLabel.text = 'Games Won: ' + this.gamesWon;
     }
-
 }
 
-
-
-
-
-export {
-    Desktop
-};
+export { Desktop };
