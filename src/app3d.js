@@ -33,10 +33,13 @@ canvas.style.display = 'block'; // Removes padding below canvas
 // Set up controls
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
+controls.dampingFactor = 0.15;
 controls.enablePan = false;
 controls.minDistance = 4;
 controls.maxDistance = 16;
 controls.maxPolarAngle = Math.PI / 2;
+controls.maxAzimuthAngle = Math.PI / 3;
+controls.minAzimuthAngle = - Math.PI / 3;
 controls.update();
 
 //  Set up raycaster
