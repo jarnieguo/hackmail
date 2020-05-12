@@ -136,12 +136,12 @@ const resumeGame = (dialogId) => {
     inGame = true;
 };
 
-$('#play').mouseup(function() {
+$('#start').mouseup(function() {
     initGame();
     $('#landing').hide();
     showDialog('#instructions');
 });
 
-$('#start').mouseup(function() {
+$('#play').mouseup(function() {
     resumeGame('#instructions');
 });
