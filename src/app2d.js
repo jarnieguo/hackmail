@@ -35,7 +35,6 @@ desktop.stage();
 
 // Render loop
 const onAnimationFrameHandler = (timeStamp) => {
-
     desktop.update(timeStamp);
 
     for (let gameName in games) {
@@ -45,9 +44,13 @@ const onAnimationFrameHandler = (timeStamp) => {
     }
 };
 
+const wonAllGames = () => {
+    return desktop.gamesWon >= Object.keys(games).length;
+};
 
 
 export {
     app,
+    wonAllGames,
     onAnimationFrameHandler
 };

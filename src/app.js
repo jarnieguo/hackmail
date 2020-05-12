@@ -10,6 +10,7 @@ import {
 
 import {
     app as app2d,
+    wonAllGames as finished,
     onAnimationFrameHandler as onAnimationFrameHandler2d
 } from 'app2d';
 const canvas2d = app2d.view;
@@ -54,7 +55,7 @@ const onKeyDownHandler = (event) => {
     if (!inGame) { return; }
 
     if (event.code === 'KeyP') {
-        showInstructions();
+        showDialog("#instructions");
         return;
     }
 
@@ -71,13 +72,15 @@ const onKeyDownHandler = (event) => {
 
 // Render loop
 const onAnimationFrameHandler = (timeStamp) => {
-    if (in3d && inGame) {
-        onAnimationFrameHandler3d(timeStamp);
+
+    if (inGame) {
+        // check win
+        if (finished()) { winGame(); }
+
+        if (in3d) { onAnimationFrameHandler3d(timeStamp); }
+        else { onAnimationFrameHandler2d(timeStamp); }
     }
-    else if (inGame) {
-        // 2d currently has no animation frame handler
-        onAnimationFrameHandler2d(timeStamp);
-    }
+
     window.requestAnimationFrame(onAnimationFrameHandler);
 };
 
@@ -111,23 +114,32 @@ const windowResizeHandler = () => {
     audio.play();
  };
 
+ const winGame = () => {
+    showDialog("#win");
+ }
 
-const showInstructions = () => {
-    $("#landing").hide();
-    $("#instructions").show();
+
+const showDialog = (dialogId) => {
+    $(dialogId).show();
     inGame = false;
 };
 
-const startGame = () => {
-    $("#instructions").hide();
-
+const resumeGame = (dialogId) => {
+    $(dialogId).hide();
     inGame = true;
 };
 
 
+
+
 $("#play").mouseup(function() {
     initGame();
-    showInstructions();
+    $("#landing").hide();
+    showDialog("#instructions");
 });
-$("#start").mouseup(startGame);
+
+$("#start").mouseup(function() {
+    resumeGame("#instructions");
+});
+
 
