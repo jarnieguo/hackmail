@@ -72,6 +72,8 @@ class TextBubbleGame extends Game {
 
         this.bubbles = [];
 
+        this.playingGame = false; // used to reset state after gameover
+        this.wonGame = false; // used to maintain state after win
         this.init();
 
         this.scoreText = this.addLabel('Score', this.score, 0, 70);
@@ -89,6 +91,8 @@ class TextBubbleGame extends Game {
     }
 
     init() {
+        if (this.playingGame || this.wonGame) { return; }
+        this.playingGame = true;
         this.score = 0;
         this.lives = 3;
     }
@@ -128,6 +132,7 @@ class TextBubbleGame extends Game {
     }
 
     update(timeStamp) {
+        if (this.wonGame) { return; }
         this.scoreText.text = 'Score: ' + this.score;
         this.livesText.text = 'Lives: ' + this.lives;
 
@@ -151,9 +156,12 @@ class TextBubbleGame extends Game {
         }
 
         if (this.lives <= 0) {
+            this.playingGame = false;
             super.gameOver();
         }
         if (this.score >= 10) {
+            this.playingGame = false;
+            this.wonGame = true;
             super.win();
         }
     }
