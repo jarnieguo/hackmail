@@ -31,6 +31,7 @@ class Phone extends Group {
         let texture = textureLoader.load(TEXTURE);
         const material = new MeshStandardMaterial({
             color: 0x68768c,
+            // color: 0xffffff,
             map: texture,
         });
         const geometry = new PlaneBufferGeometry(1, 1);

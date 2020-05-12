@@ -8,7 +8,8 @@ import {
     Window,
     Page,
     Notebook,
-    Phone
+    Phone,
+    Lamp
 } from '../objects';
 
 class Room extends Scene {
@@ -19,7 +20,7 @@ class Room extends Scene {
 
         let objects = [];
         objects.push(new Desk());
-        objects.push(new BasicLights());
+        objects.push(new Lamp());
         objects.push(new Computer());
         objects.push(new Floor());
         objects.push(new Wall(0, 0, -3, 0, 0));
@@ -37,6 +38,9 @@ class Room extends Scene {
         const phone = new Phone(false);
         this.phone = phone;
         objects.push(phone);
+        const lights = new BasicLights();
+        this.lights = lights;
+        objects.push(lights);
 
         this.add(...objects);
     }
@@ -63,6 +67,9 @@ class Room extends Scene {
                     return;
                 } else if (cur.name == 'computer') {
                     return 'desktop';
+                } else if (cur.name == "lamp") {
+                    this.lights.toggleLights();
+                    return;
                 }
                 cur = cur.parent;
             }

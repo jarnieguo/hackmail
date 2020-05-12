@@ -8,3 +8,4 @@ export * from './Window';
 export * from './Page';
 export * from './Notebook';
 export * from './Phone';
+export * from './Lamp';
