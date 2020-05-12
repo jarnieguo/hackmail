@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 
 import BACKIMG from './backimg.png';
+import IMAGE from './ex.png';
 
 
 class Desktop {
@@ -25,6 +26,7 @@ class Desktop {
 
     initObjects() {
       this.initTopBar();
+      this.initTestButton(); // debug
     }
 
     stage() {
@@ -98,6 +100,24 @@ class Desktop {
         this.barLabel.y = 15;
         this.objects.push(this.barLabel);
 
+    }
+
+    // increase win count im too lazy to play the games
+    initTestButton() {
+         // Display img button
+        const button = new PIXI.Sprite(new PIXI.Texture.from(IMAGE));
+        button.width = 50;
+        button.height = 50;
+        button.position.set(50, 100);
+        button.buttonMode = true;
+        button.interactive = true;
+
+        button.on('pointerdown', (event) => {
+            this.gamesWon++;
+        });
+        button.on('pointerover', (event) => this.onPointerOver(button));
+        button.on('pointerout', (event) => this.onPointerOut(button));
+        this.objects.push(button);
     }
 
     // onClick(object) {
