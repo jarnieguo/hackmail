@@ -1,7 +1,7 @@
 import { Scene, Color } from 'three';
 import { Desk } from 'objects';
 import { BasicLights } from 'lights';
-import { Computer, Floor, Wall, Page, Notebook } from '../objects';
+import { Computer, Floor, Wall, Window, Page, Notebook } from '../objects';
 
 class Room extends Scene {
     constructor() {
@@ -16,8 +16,9 @@ class Room extends Scene {
         objects.push(new Floor());
         objects.push(new Wall(0, 0, -3, 0, 0));
         objects.push(new Wall(0, 0, 20, Math.PI, 0));
-        objects.push(new Wall(-20, 0, 0, 0, Math.PI/2));
-        objects.push(new Wall(20, 0, 0, 0, -Math.PI/2));
+        objects.push(new Wall(-20, 0, 0, 0, Math.PI / 2));
+        objects.push(new Wall(20, 0, 0, 0, -Math.PI / 2));
+        objects.push(new Window(0, 3, -2.95, 0, 0));
 
         objects.push(new Notebook());
 
