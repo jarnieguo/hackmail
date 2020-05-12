@@ -1,7 +1,7 @@
 import { Scene, Color } from 'three';
 import { Desk } from 'objects';
 import { BasicLights } from 'lights';
-import { 
+import {
     Computer,
     Floor,
     Wall,
@@ -46,11 +46,12 @@ class Room extends Scene {
     }
 
     //  Handle onClick events
-    onClick(camera, objects) {
+    onClick(camera, controls, objects) {
         //  Something is open; close it
         if (this.open) {
             this.open.setVisible(false);
             this.open = null;
+            controls.enabled = true;
             return;
         }
 
@@ -60,10 +61,10 @@ class Room extends Scene {
             let cur = obj;
             while (cur != undefined) {
                 if (cur.name == "notebook") {
-                    this.openObject(camera, this.page);
+                    this.openObject(camera, controls, this.page);
                     return;
                 } else if (cur.name == "phone") {
-                    this.openObject(camera, this.phone);
+                    this.openObject(camera, controls, this.phone);
                     return;
                 } else if (cur.name == 'computer') {
                     return 'desktop';
@@ -76,10 +77,11 @@ class Room extends Scene {
         }
     }
 
-    openObject(camera, object) {
+    openObject(camera, controls, object) {
         this.open = object;
         this.positionToCamera(camera, object);
         object.setVisible(true);
+        controls.enabled = false;
     }
 
     positionToCamera(camera, object) {
