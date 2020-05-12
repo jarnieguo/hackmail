@@ -109,31 +109,38 @@ class Hangman extends Game {
         this.setIcon(PIXI.Texture.from(ICON));
         this.setLabel('Hangman');
 
+        this.playingGame = false; // used to reset state after gameover
+        this.wonGame = false; // used to maintain state after win
+
+        this.init();
+    }
+
+    init() {
+        if (this.playingGame || this.wonGame) { return; }
+        this.playingGame = true;
+
+        // Different word each time
         let rand = Math.floor(Math.random() * PASSWORDS.length);
         if (rand >= PASSWORDS.length) {
             rand = PASSWORDS.length - 1;
         }
         this.password = PASSWORDS[rand].toUpperCase();
-        
+        this.objects = [];
+        this.initObjects();
+
         rand = Math.floor(Math.random() * this.password.length);
         if (rand >= this.password.length) {
             rand = this.password.length - 1;
         }
         this.revealedLetter = rand;
 
-        this.initObjects();
-        this.init();
-    }
-    
-    init() {
         this.letterBlocks = [];
-        this.gameOver = false;
         this.timer = 10;
         this.wrongLetters = '';
 
-        //  Hide all tiles 
+        //  Hide all tiles
         for (let i = 0; i < this.password.length; i++) {
-            this.passwordBlocks[i].hideText()
+            this.passwordBlocks[i].hideText();
         }
 
         //  Reveal one of the tiles
@@ -142,7 +149,8 @@ class Hangman extends Game {
 
     //  TODO: Put proper win reward
     winGame() {
-        this.gameOver = true;
+        this.wonGame = true;
+        this.playingGame = false;
 
         //  Destroy all letter blocks
         for (let i = 0; i < this.letterBlocks.length; i++) {
@@ -163,13 +171,13 @@ class Hangman extends Game {
                 continue;
             }
 
-            if (password[i] == letter) {
+            if (password[i] === letter) {
                 this.passwordBlocks[i].revealLetter();
                 revealedLetters++;
             }
         }
 
-        if (revealedLetters == password.length) {
+        if (revealedLetters === password.length) {
             this.winGame();
             return;
         }
@@ -178,7 +186,8 @@ class Hangman extends Game {
         if (!this.password.includes(letter)) {
             if (!this.wrongLetters.includes(letter)) {
                 this.initWrongLetterBlock(letter);
-                if (this.wrongLetters.length == this.password.length) {
+                if (this.wrongLetters.length === this.password.length) {
+                    this.playingGame = false;
                     super.gameOver();
                 }
             }
@@ -261,11 +270,11 @@ class Hangman extends Game {
     }
 
     update(timestamp) {
-        if (this.gameOver) {
+        if (this.wonGame) {
             return;
         }
 
-        if (this.timer == 0) {
+        if (this.timer === 0) {
             this.timer = 30;
             this.initLetterBlock();
         }

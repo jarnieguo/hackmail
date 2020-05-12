@@ -44,9 +44,9 @@ class Game {
     // Don't override
     stage() {
         this.parent.renderer.backgroundColor = this.bgColor;
-        this.parent.stage.addChild(...this.objects);
         this.active = true;
         this.init();
+        this.parent.stage.addChild(...this.objects);
     }
     // Don't override
     exit() {
