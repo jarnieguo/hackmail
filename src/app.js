@@ -74,10 +74,11 @@ const onKeyDownHandler = (event) => {
 const onAnimationFrameHandler = (timeStamp) => {
 
     if (inGame) {
-        // check win
-        if (finished()) { winGame(); }
 
-        if (in3d) { onAnimationFrameHandler3d(timeStamp); }
+        if (in3d) {
+            if (finished()) { winGame(); }
+            onAnimationFrameHandler3d(timeStamp);
+        }
         else { onAnimationFrameHandler2d(timeStamp); }
     }
 
