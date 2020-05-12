@@ -30,19 +30,25 @@ class PasswordBlock extends LetterBlock {
         this.sprite.interactive = true;
         this.revealed = false;
         this.sprite.on('pointerdown', (event) => this.onClick(this.sprite));
-    }
-
-    revealLetter() {
-        this.revealed = true;
 
         let text = new PIXI.Text(this.letter, {
             fontFamily: 'Arial',
             fontSize: 100,
         });
         text.anchor.x = text.anchor.y = 0.5;
-        this.sprite.addChild(text);
+        this.text = text;
+    }
 
+    revealLetter() {
+        this.revealed = true;
+        this.sprite.addChild(this.text);
         this.sprite.tint = 0xb3f5b8;
+    }
+
+    hideText() {
+        this.revealed = false;
+        this.sprite.removeChild(this.text);
+        this.sprite.tint = 0xFFFFFF;
     }
 
     onClick(object) {
@@ -108,12 +114,30 @@ class Hangman extends Game {
             rand = PASSWORDS.length - 1;
         }
         this.password = PASSWORDS[rand].toUpperCase();
+        
+        rand = Math.floor(Math.random() * this.password.length);
+        if (rand >= this.password.length) {
+            rand = this.password.length - 1;
+        }
+        this.revealedLetter = rand;
+
+        this.initObjects();
+        this.init();
+    }
+    
+    init() {
         this.letterBlocks = [];
         this.gameOver = false;
         this.timer = 10;
         this.wrongLetters = '';
 
-        this.initObjects();
+        //  Hide all tiles 
+        for (let i = 0; i < this.password.length; i++) {
+            this.passwordBlocks[i].hideText()
+        }
+
+        //  Reveal one of the tiles
+        this.passwordBlocks[this.revealedLetter].revealLetter();
     }
 
     //  TODO: Put proper win reward
@@ -185,13 +209,6 @@ class Hangman extends Game {
         }
 
         this.objects.push(this.passwordContainer);
-
-        //  Reveal one of the tiles
-        let rand = Math.floor(Math.random() * this.password.length);
-        if (rand >= this.password.length) {
-            rand = this.password.length - 1;
-        }
-        this.passwordBlocks[rand].revealLetter();
     }
 
     //  pick random char from string
