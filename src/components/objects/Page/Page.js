@@ -18,15 +18,11 @@ class Page extends Mesh {
         super(geometry, material);
 
         this.visible = false;
+        this.cameraScale = 1.5;
     }
 
     setVisible(visible) {
         this.visible = visible;
-    }
-
-    positionToCamera(camera) {
-        this.quaternion.copy(camera.quaternion);
-        this.position.copy(camera.position.clone().multiplyScalar(.8));
     }
 }
 

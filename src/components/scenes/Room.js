@@ -1,7 +1,15 @@
 import { Scene, Color } from 'three';
 import { Desk } from 'objects';
 import { BasicLights } from 'lights';
-import { Computer, Floor, Wall, Window, Page, Notebook } from '../objects';
+import { 
+    Computer,
+    Floor,
+    Wall,
+    Window,
+    Page,
+    Notebook,
+    Phone
+} from '../objects';
 
 class Room extends Scene {
     constructor() {
@@ -19,13 +27,16 @@ class Room extends Scene {
         objects.push(new Wall(-20, 0, 0, 0, Math.PI / 2));
         objects.push(new Wall(20, 0, 0, 0, -Math.PI / 2));
         objects.push(new Window(0, 3, -2.95, 0, 0));
-
         objects.push(new Notebook());
+        objects.push(new Phone(true));
 
-        this.open = false;
+        this.open = null;
         const page = new Page();
         this.page = page;
         objects.push(page);
+        const phone = new Phone(false);
+        this.phone = phone;
+        objects.push(phone);
 
         this.add(...objects);
     }
@@ -34,8 +45,8 @@ class Room extends Scene {
     onClick(camera, objects) {
         //  Something is open; close it
         if (this.open) {
-            this.page.setVisible(false);
-            this.open = false;
+            this.open.setVisible(false);
+            this.open = null;
             return;
         }
         
@@ -45,10 +56,10 @@ class Room extends Scene {
             let cur = obj;
             while (cur != undefined) {
                 if (cur.name == "notebook") {
-                    //  Open page
-                    this.open = true;
-                    this.page.positionToCamera(camera);
-                    this.page.setVisible(true);
+                    this.openObject(camera, this.page);
+                    return;
+                } else if (cur.name == "phone") {
+                    this.openObject(camera, this.phone);
                     return;
                 } else if (cur.name == 'computer') {
                     return 'desktop';
@@ -56,6 +67,20 @@ class Room extends Scene {
                 cur = cur.parent;
             }
         }
+    }
+
+    openObject(camera, object) {
+        this.open = object;
+        this.positionToCamera(camera, object);
+        object.setVisible(true);
+    }
+
+    positionToCamera(camera, object) {
+        object.quaternion.copy(camera.quaternion);
+        let position = camera.position.clone();
+        let norm = position.clone().normalize();
+        position.sub(norm.multiplyScalar(object.cameraScale));
+        object.position.copy(position);
     }
 }
 
