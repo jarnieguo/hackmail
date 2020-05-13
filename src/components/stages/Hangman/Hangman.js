@@ -2,7 +2,7 @@ import * as PIXI from 'pixi.js';
 import { Game } from '../Game';
 
 // TODO: make real icon
-import ICON from './icon2.png';
+import ICON from './icon.png';
 import PWBLOCK from './pwblock2.png';
 import { PASSWORDS } from './passwords.js';
 
@@ -107,7 +107,7 @@ class Hangman extends Game {
 
         this.setBgColor(0xffffff);
         this.setIcon(PIXI.Texture.from(ICON));
-        this.setLabel('Hangman');
+        this.setLabel('Secret');
 
         this.playingGame = false; // used to reset state after gameover
         this.wonGame = false; // used to maintain state after win

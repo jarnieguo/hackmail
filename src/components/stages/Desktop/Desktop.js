@@ -9,11 +9,25 @@ class Desktop {
         this.objects = [];
 
         this.bgColor = 0xffdace;
-        this.textStyle = new PIXI.TextStyle({ fill: '#000000', fontSize: 18 });
+        this.textStyle = new PIXI.TextStyle({
+            fill: 'white',
+            fontFamily: 'Tahoma',
+            fontSize: 18,
+            align: 'center',
+            // dropShadow: true,
+            // dropShadowAlpha: 0.3,
+            // dropShadowBlur: 5,
+            // dropShadowDistance: 2,
+            stroke: 'black',
+            strokeThickness: 4,
+            // wordWrap: true,
+            // wordWrapWidth: 100,
+            // leading: -10
+        });
 
         this.grid = {
-            w: 100,
-            pad: 50,
+            w: 70,
+            pad: 60,
         };
 
         this.gamesWon = 0;
@@ -22,21 +36,14 @@ class Desktop {
     }
 
     initObjects() {
+        this.initBg();
         this.initTopBar();
+        this.initBottomBar();
         this.initTestButton(); // debug
     }
 
     stage() {
         // this.parent.renderer.backgroundColor = this.bgColor;
-        const texture = new PIXI.Texture.from(BACKIMG);
-        let sprite = new PIXI.Sprite(texture);
-
-        sprite.anchor.x = 0;
-        sprite.anchor.y = 0;
-        sprite.width = this.parent.renderer.width;
-        sprite.height = this.parent.renderer.height;
-
-        this.parent.stage.addChild(sprite);
         this.parent.stage.addChild(...this.objects);
     }
 
@@ -61,7 +68,8 @@ class Desktop {
 
         // TODO: arrange icons in grid on screen (responsive??) by index
         // Currently arranges them in a single horizontal row
-        button.position.set(50 + index * (this.grid.w + this.grid.pad), 200);
+        button.anchor.x = button.anchor.y = 0.5;
+        button.position.set(this.grid.w, 2*this.grid.w + index * (this.grid.w + this.grid.pad));
 
         button.buttonMode = true;
         button.interactive = true;
@@ -76,10 +84,22 @@ class Desktop {
 
         // Display text label
         const label = new PIXI.Text(game.label, this.textStyle);
+        label.anchor.x = label.anchor.y = 0.5;
         label.x = button.x;
-        label.y = button.y + this.grid.w;
+        label.y = button.y + 2*this.grid.w/3;
 
         this.objects.push(button, label);
+    }
+
+    initBg() {
+        const texture = new PIXI.Texture.from(BACKIMG);
+        const bg = new PIXI.Sprite(texture);
+
+        bg.position.set(0, 0);
+        bg.width = this.parent.renderer.width;
+        bg.height = this.parent.renderer.height;
+
+        this.objects.push(bg);
     }
 
     initTopBar() {
@@ -92,12 +112,26 @@ class Desktop {
 
         // Show label on top bar idk
         this.barLabel = new PIXI.Text(
-            'Games Won: ' + this.gamesWon,
+            'Evidence collected: ' + this.gamesWon + '/3',
             this.textStyle
         );
         this.barLabel.x = 10;
         this.barLabel.y = 15;
         this.objects.push(this.barLabel);
+    }
+
+    initBottomBar() {
+        const bottomBar = new PIXI.Graphics();
+        bottomBar.beginFill(0x1B70DC);
+        bottomBar.drawRect(0, window.innerHeight - 40, window.innerWidth, 40);
+        bottomBar.endFill();
+        this.objects.push(bottomBar);
+
+        const start = new PIXI.Graphics();
+        start.beginFill(0x4B9A36);
+        start.drawRect(0, window.innerHeight - 40, 100, 40);
+        start.endFill();
+        this.objects.push(start);
     }
 
     // increase win count im too lazy to play the games
@@ -123,7 +157,7 @@ class Desktop {
     // }
 
     onPointerOver(object) {
-        object.tint = 0x666666;
+        object.tint = 0x999999;
     }
 
     onPointerOut(object) {
@@ -131,7 +165,7 @@ class Desktop {
     }
 
     update(timeStamp) {
-        this.barLabel.text = 'Games Won: ' + this.gamesWon;
+        this.barLabel.text = 'Evidence collected: ' + this.gamesWon + '/3';
     }
 }
 

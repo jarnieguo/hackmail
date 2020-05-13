@@ -63,28 +63,37 @@ class Game {
     initTopBar() {
         // Top bar
         const topBar = new PIXI.Graphics();
-        topBar.beginFill(0xc8eaf7);
-        topBar.drawRect(0, 0, window.innerWidth, 70);
+        topBar.beginFill(0x1B70DC);
+        topBar.drawRect(0, 0, window.innerWidth, 40);
         topBar.endFill();
         this.objects.push(topBar);
 
         // Exit button
         const exitButton = new PIXI.Sprite(PIXI.Texture.from(EXIT));
-        exitButton.width = 50;
-        exitButton.height = 50;
-        exitButton.position.set(window.innerWidth - 60, 10);
+        exitButton.width = 30;
+        exitButton.height = 30;
+        exitButton.position.set(window.innerWidth - 35, 5);
         exitButton.buttonMode = true;
         exitButton.interactive = true;
         exitButton.on('pointerdown', (event) => this.exit());
+        exitButton.on('pointerover', (event) => this.desktop.onPointerOver(exitButton));
+        exitButton.on('pointerout', (event) => this.desktop.onPointerOut(exitButton));
         this.objects.push(exitButton);
+
+        // icon
+        const icon = new PIXI.Sprite(this.icon);
+        icon.width = 30;
+        icon.height = 30;
+        icon.position.set(10, 5);
+        this.objects.push(icon);
 
         // Show label on top bar idk
         const barLabel = new PIXI.Text(
-            this.label + '   games won: ' + this.desktop.gamesWon,
-            this.textStyle
+            this.label,
+            this.desktop.textStyle
         );
-        barLabel.x = 10;
-        barLabel.y = 15;
+        barLabel.x = 50;
+        barLabel.y = 5;
         this.objects.push(barLabel);
     }
 
