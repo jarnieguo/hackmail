@@ -2,7 +2,7 @@ import {
     MeshStandardMaterial,
     PlaneBufferGeometry,
     Mesh,
-    TextureLoader
+    TextureLoader,
 } from 'three';
 import TEXTURE from './page.png';
 

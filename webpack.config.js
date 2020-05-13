@@ -48,10 +48,15 @@ module.exports = {
             scenes$: path.resolve(__dirname, 'src/components/scenes'),
             stages$: path.resolve(__dirname, 'src/components/stages'),
             app2d$: path.resolve(__dirname, 'src/app2d.js'),
-            app3d$: path.resolve(__dirname, 'src/app3d.js')
+            app3d$: path.resolve(__dirname, 'src/app3d.js'),
         },
     },
     plugins: [
-        new HtmlWebpackPlugin({ title: pkg.title, favicon: 'src/favicon.ico' }),
+        // new HtmlWebpackPlugin({ title: pkg.title, favicon: 'src/favicon.ico' }),
+        new HtmlWebpackPlugin({
+            title: pkg.title,
+            favicon: 'src/favicon.ico',
+            template: 'src/index.html',
+        }),
     ],
 };

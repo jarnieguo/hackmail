@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
+    <style type="text/css">
+        body {
+          background-color: mistyrose;
+          font-family: verdana;
+          /* font-family: "Comic Sans MS", cursive, sans-serif; */
+          text-align: center;
+          font-size: 20pt;
+        }
+
+        button {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            font-size: 20pt;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        button:hover {
+            color: red;
+        }
+
+        .screen {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+        }
+
+        #landing {
+        }
+
+        .hackmail {
+            font-family: 'Faster One', cursive;
+            font-size: 100pt;
+        }
+
+        #names {
+          font-size: 16pt;
+        }
+
+        #credits {
+            display: none;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dialog {
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 10px;
+            display: none;
+            position: fixed;
+            padding: 5%;
+            top: 10%;
+            left: 20%;
+            width: 50%;
+            z-index: 999;
+            color: white;
+            line-height: 40px;
+        }
+
+        #instructions {
+            
+        }
+
+        #win {
+
+        }
+
+        #game {
+            display: none;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="landing" class="screen">
+        <div class="hackmail">hackmail</div>
+        <p> <div id="names">by Abigail Rettew, Jamie Guo, Jessica Fielding, & Ze-Xin Koh </div></p>
+
+        <button id="start"> Start </button>
+        <p>
+        <button onclick="$('#landing').hide();$('#credits').show();"> Credits </button>
+    </div>
+
+    <div id="credits" class="screen">
+        <h2>Credits</h2>
+        <p>
+            COS426 Spring 2020 Final project by Abigail Rettew, Jamie Guo, Jessica Fielding, & Ze-Xin Koh.
+        </p>
+        <ul>
+        <li><a href="https://threejs.org/">ThreeJS</a></li>
+        <li><a href="https://www.pixijs.com/">PixiJS</a></li>
+        <li><a href="https://sketchfab.com/3d-models/computer-desk-4-794432c692cc4bb599ff65ac5740f044">Desk</a></li>
+        <li><a href="https://poly.google.com/view/9Ptsg_xZt6B">Notebook</a></li>
+        <li><a href="https://sketchfab.com/3d-models/apple-iphone-7-7e82a204471e4ad2bd7595df7f9319da">Phone</a></li>
+        <li><a href="http://iphonefaketext.com/">Phone screen</a></li>
+        <li><a href="https://poly.google.com/view/aurlA5vCous">Lamp</a></li>
+        </ul>
+        <p>
+        <button onclick="$('#credits').hide();$('#landing').show();"> back </button>
+    </div>
+
+    <div id="instructions" class="dialog">
+        <p> Click on your professor's laptop to access it! <br>
+          Win minigames to gather enough evidence to blackmail him about his
+          affair!<br>
+          Press P at any time to pause.
+        </p>
+        <button id="play"> Play! </button>
+    </div>
+
+    <div id="win" class="dialog">
+        <p> 
+            you are a winner congrations
+        </p>
+        <button onclick="window.location.reload();"> thank you </button>
+    </div>
+
+    <div id="game"></div>
+
+</body>
+</html>

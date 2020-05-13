@@ -16,7 +16,6 @@ import {
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { Room } from 'scenes';
 
-
 // Initialize core ThreeJS components
 let scene = new Room();
 const camera = new PerspectiveCamera();
@@ -30,9 +29,6 @@ camera.lookAt(new Vector3(0, 0, 0));
 renderer.setPixelRatio(window.devicePixelRatio);
 const canvas = renderer.domElement;
 canvas.style.display = 'block'; // Removes padding below canvas
-document.body.style.margin = 0; // Removes margin around page
-document.body.style.overflow = 'hidden'; // Fix scrolling
-// document.body.appendChild(canvas);
 
 // Set up controls
 const controls = new OrbitControls(camera, canvas);
@@ -40,7 +36,7 @@ controls.enableDamping = true;
 controls.enablePan = false;
 controls.minDistance = 4;
 controls.maxDistance = 16;
-controls.maxPolarAngle = Math.PI/2;
+controls.maxPolarAngle = Math.PI / 2;
 controls.update();
 
 //  Set up raycaster
@@ -79,8 +75,12 @@ const onClick = (event) => {
 // Render loop
 const onAnimationFrameHandler = (timeStamp) => {
     controls.update();
-    renderer.render(scene, camera);
+    render();
     scene.update && scene.update(timeStamp);
+};
+
+const render = () => {
+    renderer.render(scene, camera);
 };
 
 // Resize Handler
@@ -93,7 +93,7 @@ const windowResizeHandler = (innerWidth, innerHeight) => {
 export {
     canvas,
     onClick,
+    render,
     onAnimationFrameHandler,
     windowResizeHandler,
 };
-

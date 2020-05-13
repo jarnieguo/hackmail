@@ -55,7 +55,7 @@ class Room extends Scene {
             this.open = null;
             return;
         }
-        
+
         //  Check for collisions
         for (let i = 0; i < objects.length; i++) {
             let obj = objects[i].object;
