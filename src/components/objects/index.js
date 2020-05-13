@@ -10,3 +10,4 @@ export * from './Notebook';
 export * from './Phone';
 export * from './Lamp';
 export * from './Pen';
+export * from './Holder';
