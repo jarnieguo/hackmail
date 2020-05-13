@@ -64,11 +64,11 @@ class Room extends Scene {
                         return;
 
                     case "computer":
-                        this.lookAtLaptop(camera);
+                        // this.lookAtLaptop(camera);
                         return 'desktop';
 
                     case "lamp":
-                        this.lights.toggleLights();
+                        this.objects.lights.toggleLights();
                         return;
                 }
                 cur = cur.parent;
