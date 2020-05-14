@@ -49,8 +49,6 @@ class Room extends Scene {
 
         this.open = null;
         this.add(...Object.values(this.objects));
-
-        this.objects.spinner.position.set(-1.5, .1, .4);
     }
 
     //  Handle onClick events
