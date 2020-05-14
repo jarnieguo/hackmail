@@ -119,7 +119,7 @@ const initGame = () => {
 
     $('#game').click(onClickHandler);
     $(window).on('keydown', onKeyDownHandler);
-    // audio.play();
+    audio.play();
 };
 
 const winGame = () => {
