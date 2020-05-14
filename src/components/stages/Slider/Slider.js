@@ -94,7 +94,7 @@ class Slider extends Game {
 
         this.s = 100;
         this.border = 2;
-        this.x0 = 100;
+        this.x0 = Math.round((window.innerWidth - 3 * this.s) / 2);
         this.y0 = 100;
 
         this.isMoving = false;

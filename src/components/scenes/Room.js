@@ -53,8 +53,8 @@ class Room extends Scene {
            couch: new Couch(),
            drink: new Pina(),
            burger: new Burger(),
-           santa: new Santa(),
-           officer: new Officer(),
+        //    santa: new Santa(),
+        //    officer: new Officer(),
            pikachu: new Pikachu(),
            skateboard: new Skateboard()
         };

@@ -19,7 +19,7 @@ class Pikachu extends Group {
             }
         );
 
-        this.position.set(-2.8, .5, -1);
+        this.position.set(-1.8, .5, -1);
 
         this.isRocking = false;
         this.rockTimes = 0;
