@@ -13,6 +13,9 @@ import {
     Pen,
     Holder,
     Spinner
+    Door,
+    Bookshelf,
+    Couch
 } from '../objects';
 
 class Room extends Scene {
@@ -38,7 +41,10 @@ class Room extends Scene {
            lights: new BasicLights(),
            pen: new Pen(),
            holder: new Holder(),
-           spinner: new Spinner()
+           spinner: new Spinner(),
+           door: new Door(),
+           bookshelf: new Bookshelf(),
+           couch: new Couch()
         };
 
         this.open = null;
