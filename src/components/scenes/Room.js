@@ -12,7 +12,7 @@ import {
     Lamp,
     Pen,
     Holder,
-    Spinner
+    Spinner,
     Door,
     Bookshelf,
     Couch
