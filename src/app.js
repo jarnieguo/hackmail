@@ -20,6 +20,7 @@ let inGame = false;
 let in3d = true;
 
 const audio = new Audio(MUSIC);
+var PLAYING = false;
 
 audio.addEventListener(
     'ended',
@@ -63,6 +64,17 @@ const onKeyDownHandler = (event) => {
 
     if (event.code === 'KeyP') {
         showDialog('#instructions');
+        return;
+    }
+
+    if (event.code === 'KeyM') {
+        if (!PLAYING) {
+            audio.play();
+            PLAYING = true;
+        } else {
+            audio.pause();
+            PLAYING = false;
+        }
         return;
     }
 
@@ -119,7 +131,8 @@ const initGame = () => {
 
     $('#game').click(onClickHandler);
     $(window).on('keydown', onKeyDownHandler);
-    // audio.play();
+    audio.play();
+    PLAYING = true;
 };
 
 const winGame = () => {
