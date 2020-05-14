@@ -116,6 +116,7 @@ class Hangman extends Game {
     }
 
     init() {
+        if (this.wonGame) { super.winDialog(); }
         if (this.playingGame || this.wonGame) { return; }
         this.playingGame = true;
 

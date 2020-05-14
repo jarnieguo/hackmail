@@ -81,6 +81,7 @@ class TextBubbleGame extends Game {
         this.setBgColor(0xffffff);
         this.setIcon(PIXI.Texture.from(ICON));
         this.setLabel('Chat');
+        this.setWinText('Salacious chat history unlocked!');
 
         this.bubbles = [];
 
@@ -103,10 +104,12 @@ class TextBubbleGame extends Game {
     }
 
     init() {
+        if (this.wonGame) { super.winDialog(); }
         if (this.playingGame || this.wonGame) { return; }
         this.playingGame = true;
         this.score = 0;
         this.lives = 3;
+        // this.lives = 1; // debug
     }
 
     initObjects() {
@@ -172,10 +175,15 @@ class TextBubbleGame extends Game {
             super.gameOver();
         }
         if (this.score >= 10) {
-            this.playingGame = false;
-            this.wonGame = true;
-            super.win();
+        // if (this.score >= 1) { // debug
+            this.win();
         }
+    }
+
+    win() {
+        this.playingGame = false;
+        this.wonGame = true;
+        super.win();
     }
 }
 
