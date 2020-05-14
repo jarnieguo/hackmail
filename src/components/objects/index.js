@@ -15,3 +15,5 @@ export * from './Spinner';
 export * from './Door';
 export * from './Bookshelf';
 export * from './Couch';
+export * from './Pina';
+export * from './Burger';

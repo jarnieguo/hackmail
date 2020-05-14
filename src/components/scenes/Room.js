@@ -15,7 +15,9 @@ import {
     Spinner,
     Door,
     Bookshelf,
-    Couch
+    Couch,
+    Pina,
+    Burger
 } from '../objects';
 
 class Room extends Scene {
@@ -44,7 +46,9 @@ class Room extends Scene {
            spinner: new Spinner(),
            door: new Door(),
            bookshelf: new Bookshelf(),
-           couch: new Couch()
+           couch: new Couch(),
+           drink: new Pina(),
+           burger: new Burger()
         };
 
         this.open = null;
