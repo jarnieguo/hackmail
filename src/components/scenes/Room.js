@@ -35,8 +35,8 @@ class Room extends Scene {
            phone_desk: new Phone(true),
            phone: new Phone(false),
            lights: new BasicLights(),
-           pen: new Pen();
-           holder: new Holder();
+           pen: new Pen(),
+           holder: new Holder()
         };
 
         this.open = null;
