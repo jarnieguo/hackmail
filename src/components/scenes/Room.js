@@ -11,7 +11,8 @@ import {
     Phone,
     Lamp,
     Pen,
-    Holder
+    Holder,
+    Door
 } from '../objects';
 
 class Room extends Scene {
@@ -30,6 +31,7 @@ class Room extends Scene {
         objects.push(new Wall(-20, 0, 0, 0, Math.PI / 2));
         objects.push(new Wall(20, 0, 0, 0, -Math.PI / 2));
         objects.push(new Window(0, 3, -2.95, 0, 0));
+        objects.push(new Door());
         objects.push(new Notebook());
         objects.push(new Phone(true));
         objects.push(new Pen());
