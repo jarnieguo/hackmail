@@ -13,7 +13,8 @@ import {
     Pen,
     Holder,
     Door,
-    Bookshelf
+    Bookshelf,
+    Couch
 } from '../objects';
 
 class Room extends Scene {
@@ -38,6 +39,7 @@ class Room extends Scene {
         objects.push(new Pen());
         objects.push(new Holder());
         objects.push(new Bookshelf());
+        objects.push(new Couch());
 
         this.open = null;
         const page = new Page();

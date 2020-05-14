@@ -13,3 +13,4 @@ export * from './Pen';
 export * from './Holder';
 export * from './Door';
 export * from './Bookshelf';
+export * from './Couch';
