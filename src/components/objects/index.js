@@ -20,3 +20,4 @@ export * from './Burger';
 export * from './Santa';
 export * from './Officer';
 export * from './Pikachu';
+export * from './Skateboard';

@@ -20,7 +20,8 @@ import {
     Burger,
     Santa,
     Officer,
-    Pikachu
+    Pikachu,
+    Skateboard
 } from '../objects';
 
 class Room extends Scene {
@@ -54,7 +55,8 @@ class Room extends Scene {
            burger: new Burger(),
            santa: new Santa(),
            officer: new Officer(),
-           pikachu: new Pikachu()
+           pikachu: new Pikachu(),
+           skateboard: new Skateboard()
         };
 
         this.open = null;
