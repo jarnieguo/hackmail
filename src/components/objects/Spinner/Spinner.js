@@ -18,13 +18,13 @@ class Spinner extends Group {
                 this.add(gltf.scene);
             }
         );
-
+        this.position.set(-1.5, .1, .4);
         this.isSpinning = false;
     }
 
     spin() {
         if (!this.isSpinning) {
-            const scale = 1000;
+            const scale = 100;
             const spin = new TWEEN.Tween(this.rotation)
             .to({y: scale * 2 * Math.PI}, scale * 500)
             .onComplete(() => { 

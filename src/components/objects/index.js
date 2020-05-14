@@ -17,3 +17,6 @@ export * from './Bookshelf';
 export * from './Couch';
 export * from './Pina';
 export * from './Burger';
+export * from './Santa';
+export * from './Officer';
+export * from './Pikachu';

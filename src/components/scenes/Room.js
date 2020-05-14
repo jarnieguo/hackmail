@@ -17,7 +17,10 @@ import {
     Bookshelf,
     Couch,
     Pina,
-    Burger
+    Burger,
+    Santa,
+    Officer,
+    Pikachu
 } from '../objects';
 
 class Room extends Scene {
@@ -48,13 +51,14 @@ class Room extends Scene {
            bookshelf: new Bookshelf(),
            couch: new Couch(),
            drink: new Pina(),
-           burger: new Burger()
+           burger: new Burger(),
+           santa: new Santa(),
+           officer: new Officer(),
+           pikachu: new Pikachu()
         };
 
         this.open = null;
         this.add(...Object.values(this.objects));
-
-        this.objects.spinner.position.set(-1.5, .1, .4);
     }
 
     //  Handle onClick events
@@ -92,7 +96,12 @@ class Room extends Scene {
 
                     case "spinner":
                         this.objects.spinner.spin();
-                }
+                        return;
+
+                    case "pikachu":
+                        this.objects.pikachu.startRock();
+                        return;
+                }       
                 cur = cur.parent;
             }
         }
@@ -119,6 +128,7 @@ class Room extends Scene {
 
     update(timestamp) {
         this.objects.spinner.update();
+        this.objects.pikachu.update();
     }
 }
 
