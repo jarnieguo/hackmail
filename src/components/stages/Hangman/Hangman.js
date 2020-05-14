@@ -187,8 +187,8 @@ class Hangman extends Game {
         if (!this.password.includes(letter)) {
             if (!this.wrongLetters.includes(letter)) {
                 this.initWrongLetterBlock(letter);
-                // if (this.wrongLetters.length === this.password.length) {
-                if (this.wrongLetters.length === 2) {
+                if (this.wrongLetters.length === this.password.length) {
+                // if (this.wrongLetters.length === 2) { // debug
                     this.playingGame = false;
                     this.init();
                     super.gameOver();
