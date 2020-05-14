@@ -7,7 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
     <style type="text/css">
         body {
-          background-color: mistyrose;
+          /*background-color: mistyrose;*/
+          background-color: black;
+          color: lightgrey;
           font-family: verdana;
           /* font-family: "Comic Sans MS", cursive, sans-serif; */
           text-align: center;
@@ -15,15 +17,25 @@
         }
 
         button {
-            font-family: "Comic Sans MS", cursive, sans-serif;
+            /*font-family: "Comic Sans MS", cursive, sans-serif;*/
+            font-family: verdana;
             font-size: 20pt;
-            background-color: black;
-            color: white;
+            background-color: lightgrey;
+            /*color: white;*/
             border: none;
             border-radius: 5px;
             padding: 20px;
         }
         button:hover {
+            color: red;
+            background-color: white;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        a {
             color: red;
         }
 
@@ -40,6 +52,7 @@
         .hackmail {
             font-family: 'Faster One', cursive;
             font-size: 100pt;
+            color: white;
         }
 
         #names {
@@ -62,7 +75,7 @@
         }
 
         .dialog {
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.7);
             border-radius: 10px;
             display: none;
             position: fixed;
@@ -143,9 +156,10 @@
     </div>
 
     <div id="instructions" class="dialog">
-        <p> Click on your professor's laptop to access it! <br>
+        <p> Click on your professor's laptop to access it.
           Win minigames to gather enough evidence to blackmail him about his
           affair!<br>
+          Press ESC to exit the desktop. <br>
           Press P at any time to pause. <br>
           Press M at any time to toggle sound.
         </p>
@@ -154,7 +168,8 @@
 
     <div id="win" class="dialog">
         <p> 
-            you are a winner congrations
+            you are a winner congrations<br>
+            jack black rewards you with an A++
         </p>
         <button onclick="window.location.reload();"> thank you </button>
     </div>
