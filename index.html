@@ -1,5 +1,7 @@
 <!doctype html><html><head><meta charset="utf-8"><title>Hackmail</title><link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet"><style>body {
-          background-color: mistyrose;
+          /*background-color: mistyrose;*/
+          background-color: black;
+          color: lightgrey;
           font-family: verdana;
           /* font-family: "Comic Sans MS", cursive, sans-serif; */
           text-align: center;
@@ -7,15 +9,25 @@
         }
 
         button {
-            font-family: "Comic Sans MS", cursive, sans-serif;
+            /*font-family: "Comic Sans MS", cursive, sans-serif;*/
+            font-family: verdana;
             font-size: 20pt;
-            background-color: black;
-            color: white;
+            background-color: lightgrey;
+            /*color: white;*/
             border: none;
             border-radius: 5px;
             padding: 20px;
         }
         button:hover {
+            color: red;
+            background-color: white;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        a {
             color: red;
         }
 
@@ -32,6 +44,7 @@
         .hackmail {
             font-family: 'Faster One', cursive;
             font-size: 100pt;
+            color: white;
         }
 
         #names {
@@ -54,7 +67,7 @@
         }
 
         .dialog {
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.7);
             border-radius: 10px;
             display: none;
             position: fixed;
@@ -82,4 +95,4 @@
             left: 0px;
             width: 100%;
             height: 100%;
-        }</style><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><link rel="shortcut icon" href="/hackmail/favicon.ico"></head><body><div id="landing" class="screen"><div class="hackmail">hackmail</div><p></p><div id="names">by Abigail Rettew, Jamie Guo, Jessica Fielding, & Ze-Xin Koh</div><p></p><button id="start">Start</button><p><button onclick="$('#landing').hide();$('#credits').show();">Credits</button></p></div><div id="credits" class="screen"><h2>Credits</h2><p>COS426 Spring 2020 Final project by Abigail Rettew, Jamie Guo, Jessica Fielding, & Ze-Xin Koh.</p><div class="scroll"><ul><li><a href="https://threejs.org/">ThreeJS</a></li><li><a href="https://www.pixijs.com/">PixiJS</a></li><li><a href="https://sketchfab.com/3d-models/computer-desk-4-794432c692cc4bb599ff65ac5740f044">Desk</a></li><li><a href="https://poly.google.com/view/9Ptsg_xZt6B">Notebook</a></li><li><a href="https://sketchfab.com/3d-models/apple-iphone-7-7e82a204471e4ad2bd7595df7f9319da">Phone</a></li><li><a href="http://iphonefaketext.com/">Phone screen</a></li><li><a href="https://poly.google.com/view/aurlA5vCous">Lamp</a></li><li><a target="_blank" href="https://icons8.com/icons/set/speech-bubble">Speech Bubble icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li><li><a target="_blank" href="https://icons8.com/icons/set/lock">Lock icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li><li><a target="_blank" href="https://icons8.com/icons/set/stack-of-photos">Photo Gallery icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li><li><a target="_blank" href="https://icons8.com/icons/set/cancel--v1">Cancel icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li><li><a target="_blank" href="https://icons8.com/icons/set/ok--v1">Ok icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li></ul></div><p><button onclick="$('#credits').hide();$('#landing').show();">back</button></p></div><div id="instructions" class="dialog"><p>Click on your professor's laptop to access it!<br>Win minigames to gather enough evidence to blackmail him about his affair!<br>Press P at any time to pause.</p><button id="play">Play!</button></div><div id="win" class="dialog"><p>you are a winner congrations</p><button onclick="window.location.reload();">thank you</button></div><div id="game"></div><script src="/hackmail/main.22588a8ccb2ae7e1ce07.js"></script></body></html>
+        }</style><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><link rel="shortcut icon" href="/hackmail/favicon.ico"></head><body><div id="landing" class="screen"><div class="hackmail">hackmail</div><p></p><div id="names">by Abigail Rettew, Jamie Guo, Jessica Fielding, & Ze-Xin Koh</div><p></p><button id="start">Start</button><p><button onclick="$('#landing').hide();$('#credits').show();">Credits</button></p></div><div id="credits" class="screen"><h2>Credits</h2><p>COS426 Spring 2020 Final project by Abigail Rettew, Jamie Guo, Jessica Fielding, & Ze-Xin Koh.</p><div class="scroll"><ul><li><a href="https://threejs.org/">ThreeJS</a></li><li><a href="https://www.pixijs.com/">PixiJS</a></li><li><a href="https://sketchfab.com/3d-models/computer-desk-4-794432c692cc4bb599ff65ac5740f044">Desk</a></li><li><a href="https://poly.google.com/view/9Ptsg_xZt6B">Notebook</a></li><li><a href="https://sketchfab.com/3d-models/apple-iphone-7-7e82a204471e4ad2bd7595df7f9319da">Phone</a></li><li><a href="http://iphonefaketext.com/">Phone screen</a></li><li><a href="https://poly.google.com/view/aurlA5vCous">Lamp</a></li><li><a href="https://sketchfab.com/3d-models/simple-pen-20-1f9aed934b2f4ca59eb2f8bf6e4b8290">Pen</a></li><li><a href="https://sketchfab.com/3d-models/pen-holder-pen-stand-0764abdf429e4d32babefc389ce91933">Pencil holder</a></li><li><a href="https://sketchfab.com/3d-models/hand-spinner-1c07b63cc4f2478e9866ca92b545cb4f#download">Spinner</a></li><li><a href="https://sketchfab.com/3d-models/beach-rescue-santa-bcf883b5cf4243b380d7e659ae8f8f36">Santa</a></li><li><a href="https://sketchfab.com/3d-models/saluting-officer-83c874eb255f4506ab966c2ef6d58034#download">Officer</a></li><li><a href="https://sketchfab.com/3d-models/pikachu-499511c9a49b46658fc7ae6ed11fb784">Pikachu</a></li><li><a href="https://poly.google.com/view/9ARtBYmBKs-">Skateboard</a> by <a href="https://poly.google.com/user/b7jif2AAit5">Alex “SAFFY” Safayan</a></li><li><a href="https://poly.google.com/view/5v5e10T-2zv">Couch</a> by <a href="https://poly.google.com/user/b7jif2AAit5">Alex “SAFFY” Safayan</a></li><li><a href="https://poly.google.com/view/bz0wAdql7Ma">Sandwich and fries</a> by <a href="https://poly.google.com/user/fdmGZ8QLHxA">Bruno Oliveira</a></li><li><a href="https://poly.google.com/view/b8uN4cUxVrc">Bookshelf</a> by <a href="https://poly.google.com/user/f59BZ_qkjmz">TechTeam Member</a></li><li><a href="https://poly.google.com/view/745Rs-a0FEM">Pina colada</a> by <a href="https://poly.google.com/user/4aEd8rQgKu2">Poly by Google</a></li><li><a target="_blank" href="https://icons8.com/icons/set/speech-bubble">Speech Bubble icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li><li><a target="_blank" href="https://icons8.com/icons/set/lock">Lock icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li><li><a target="_blank" href="https://icons8.com/icons/set/stack-of-photos">Photo Gallery icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li><li><a target="_blank" href="https://icons8.com/icons/set/cancel--v1">Cancel icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li><li><a target="_blank" href="https://icons8.com/icons/set/ok--v1">Ok icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li></ul></div><p><button onclick="$('#credits').hide();$('#landing').show();">back</button></p></div><div id="instructions" class="dialog"><p>Click on your professor's laptop to access it. Win minigames to gather enough evidence to blackmail him about his affair!<br>Press ESC to exit the desktop.<br>Press P at any time to pause.<br>Press M at any time to toggle sound.</p><button id="play">Play!</button></div><div id="win" class="dialog"><p>you are a winner congrations<br>jack black rewards you with an A++</p><button onclick="window.location.reload();">thank you</button></div><div id="game"></div><script src="/hackmail/main.250ac61ee88b15a014f1.js"></script></body></html>
