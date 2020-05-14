@@ -10,9 +10,9 @@ class Door extends Group {
         this.name = 'door';
         const loader = new GLTFLoader();
         loader.load(MODEL, (gltf) => {
-            gltf.scene.scale.multiplyScalar(0.04);
-            gltf.scene.rotation.set(0, Math.PI / 2, 0);
-            gltf.scene.position.set(-20, -3, 3);
+            gltf.scene.scale.multiplyScalar(0.03);
+            // gltf.scene.rotation.set(0, Math.PI / 2, 0);
+            gltf.scene.position.set(12, -3, -3);
             this.add(gltf.scene);
         });
 
