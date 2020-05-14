@@ -1,21 +1,21 @@
 let GOODTEXTS = [
-    'ooh baby \n wanna come \n over ;))))',
-    'last night \n was hella \n sexy',
-    'ur sexier \n than np \n completeness',
-    'i like u \n better than code \n without bugs',
-    'u turn \n me \n on',
-    "let's roleplay. i can \n be a client program \n u can be my server",
-    'hey \n wanna see my \n Big Data 😉 🍆',
+    'ooh baby wanna come over ;))))',
+    'last night was hella sexy',
+    'ur sexier than np completeness',
+    'i like u better than code without bugs',
+    'u turn me on',
+    "let's roleplay. i can be a client program u can be my server",
+    'hey wanna see my Big Data 😉 🍆',
     '🍆 👅 💦',
-    // "hear u can hack into \n anything can u hack \n ur way into my pants 2nite"
+    // "hear u can hack into anything can u hack ur way into my pants 2nite"
 ];
 
 let BADTEXTS = [
-    'phenolphthalein \n turns pink \n sometimes',
-    'i think \n p is equal \n to np',
-    'definitive \n finite \n automata',
-    'tell my \n wife i love \n her',
-    'routers are \n layer 2 \n abstractions',
+    'phenolphthalein turns pink sometimes',
+    'i think p is equal to np',
+    'definitive finite automata',
+    'tell my wife i love her',
+    'routers are layer 2 abstractions',
 ];
 
 export { GOODTEXTS, BADTEXTS };

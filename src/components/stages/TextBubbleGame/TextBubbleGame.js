@@ -2,9 +2,9 @@ import * as PIXI from 'pixi.js';
 import { Game } from '../Game';
 
 import { GOODTEXTS, BADTEXTS } from './texts.js';
-import BUBBLE from './bubble.png';
+import ICON from './icon.png';
+import BUBBLE from './bub.png';
 
-// https://pixijs.io/examples/#/interaction/custom-hitarea.js
 const bubbleIcon = PIXI.Texture.from(BUBBLE);
 const GRAVITY = 0.07;
 
@@ -15,16 +15,28 @@ class Bubble {
         this.isBad = Math.random() < 0.4;
 
         // pick random text from appropriate text array
-        let textArray = this.isBad ? BADTEXTS : GOODTEXTS;
-        let txt = textArray[Math.floor(Math.random() * textArray.length)];
-        let text = new PIXI.Text(txt, { fontFamily: 'Arial', fontSize: 14 });
-        text.y = -1;
+        const textArray = this.isBad ? BADTEXTS : GOODTEXTS;
+        const txt = textArray[Math.floor(Math.random() * textArray.length)];
+        const text = new PIXI.Text(txt, {
+            fontFamily: 'Tahoma',
+            fontSize: 40,
+            leading: -10,
+            fill: 'white',
+            wordWrap: true,
+            wordWrapWidth: 350
+        });
+        text.y = -30;
+        text.x = -15;
 
         this.sprite = new PIXI.Sprite(bubbleIcon);
         this.sprite.position.set(
             Math.random() * window.innerWidth,
             window.innerHeight + 10
         );
+        this.sprite.width = 200;
+        this.sprite.height = 100;
+        this.sprite.on('pointerover', (event) => { this.sprite.tint = 0x4fb6f7; });
+        this.sprite.on('pointerout', (event) => { this.sprite.tint = 0xffffff; });
 
         this.sprite.anchor.x = this.sprite.anchor.y = 0.5;
         text.anchor.x = text.anchor.y = 0.5;
@@ -67,8 +79,9 @@ class TextBubbleGame extends Game {
         super(parent, desktop);
 
         this.setBgColor(0xffffff);
-        this.setIcon(bubbleIcon);
-        this.setLabel('Text Bubbles');
+        this.setIcon(PIXI.Texture.from(ICON));
+        this.setLabel('Chat');
+        this.setWinText('Salacious chat history unlocked!');
 
         this.bubbles = [];
 
@@ -91,10 +104,12 @@ class TextBubbleGame extends Game {
     }
 
     init() {
+        if (this.wonGame) { super.winDialog(); }
         if (this.playingGame || this.wonGame) { return; }
         this.playingGame = true;
         this.score = 0;
         this.lives = 3;
+        // this.lives = 1; // debug
     }
 
     initObjects() {
@@ -160,10 +175,15 @@ class TextBubbleGame extends Game {
             super.gameOver();
         }
         if (this.score >= 10) {
-            this.playingGame = false;
-            this.wonGame = true;
-            super.win();
+        // if (this.score >= 1) { // debug
+            this.win();
         }
+    }
+
+    win() {
+        this.playingGame = false;
+        this.wonGame = true;
+        super.win();
     }
 }
 

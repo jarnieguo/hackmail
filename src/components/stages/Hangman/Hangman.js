@@ -2,7 +2,7 @@ import * as PIXI from 'pixi.js';
 import { Game } from '../Game';
 
 // TODO: make real icon
-import ICON from './icon2.png';
+import ICON from './icon.png';
 import PWBLOCK from './pwblock2.png';
 import { PASSWORDS } from './passwords.js';
 
@@ -107,7 +107,7 @@ class Hangman extends Game {
 
         this.setBgColor(0xffffff);
         this.setIcon(PIXI.Texture.from(ICON));
-        this.setLabel('Hangman');
+        this.setLabel('Secret');
 
         this.playingGame = false; // used to reset state after gameover
         this.wonGame = false; // used to maintain state after win
@@ -116,6 +116,7 @@ class Hangman extends Game {
     }
 
     init() {
+        if (this.wonGame) { super.winDialog(); }
         if (this.playingGame || this.wonGame) { return; }
         this.playingGame = true;
 
@@ -199,6 +200,7 @@ class Hangman extends Game {
     initObjects() {
         super.initObjects();
         this.initPasswordContainer();
+        this.initWrongContainer();
     }
 
     //  Create the passwordBlocks
@@ -229,11 +231,17 @@ class Hangman extends Game {
         return str[rand];
     }
 
+    initWrongContainer() {
+        this.wrongContainer = new PIXI.Container();
+        this.objects.push(this.wrongContainer);
+    }
+
     //  Create wrong letter block
     initWrongLetterBlock(letter) {
         let x = 50 + this.wrongLetters.length * 65;
         let block = new WrongLetterBlock(this, letter, x, 120);
-        this.parent.stage.addChild(block.sprite);
+        // this.parent.stage.addChild(block.sprite);
+        this.wrongContainer.addChild(block.sprite);
         this.wrongLetters += letter;
     }
 

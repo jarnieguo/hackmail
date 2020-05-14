@@ -89,7 +89,8 @@ class Slider extends Game {
 
         this.setBgColor(0xffffff);
         this.setIcon(PIXI.Texture.from(ICON));
-        this.setLabel('Slider');
+        this.setLabel('Photos');
+        this.setWinText('Scandalous photo with non-spouse unlocked!');
 
         this.s = 100;
         this.border = 2;
@@ -101,6 +102,10 @@ class Slider extends Game {
         this.gameWon = false;
 
         this.initObjects();
+    }
+
+    init() {
+        if (this.gameWon) { super.winDialog(); }
     }
 
     initObjects() {
