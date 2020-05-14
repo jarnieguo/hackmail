@@ -39,7 +39,7 @@ class Desktop {
         this.initBg();
         this.initTopBar();
         this.initBottomBar();
-        this.initTestButton(); // debug
+        // this.initTestButton(); // debug
     }
 
     stage() {
