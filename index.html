@@ -19,11 +19,14 @@
             color: red;
         }
 
+        .screen {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+        }
+
         #landing {
-          position: fixed;
-          top: 25%;
-          left: 25%;
-          width: 50%;
         }
 
         .hackmail {
@@ -33,6 +36,21 @@
 
         #names {
           font-size: 16pt;
+        }
+
+        #credits {
+            display: none;
+        }
+
+        .scroll {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
         }
 
         .dialog {
@@ -64,4 +82,4 @@
             left: 0px;
             width: 100%;
             height: 100%;
-        }</style><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><link rel="shortcut icon" href="/hackmail/favicon.ico"></head><body><div id="landing"><div class="hackmail">hackmail</div><p></p><div id="names">by Abigail Rettew, Jamie Guo, Jessica Fielding, & Ze-Xin Koh</div><p></p><button id="play">Play</button></div><div id="instructions" class="dialog"><p>Click on your professor's laptop to access it!<br>Win minigames to gather enough evidence to blackmail him about his affair!<br>Press P at any time to pause.</p><button id="start">Start</button></div><div id="win" class="dialog"><p>you are a winner congrations</p><button onclick="window.location.reload();">thank you</button></div><div id="game"></div><script src="/hackmail/main.4b0afccb032333083e11.js"></script></body></html>
+        }</style><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><link rel="shortcut icon" href="/hackmail/favicon.ico"></head><body><div id="landing" class="screen"><div class="hackmail">hackmail</div><p></p><div id="names">by Abigail Rettew, Jamie Guo, Jessica Fielding, & Ze-Xin Koh</div><p></p><button id="start">Start</button><p><button onclick="$('#landing').hide();$('#credits').show();">Credits</button></p></div><div id="credits" class="screen"><h2>Credits</h2><p>COS426 Spring 2020 Final project by Abigail Rettew, Jamie Guo, Jessica Fielding, & Ze-Xin Koh.</p><div class="scroll"><ul><li><a href="https://threejs.org/">ThreeJS</a></li><li><a href="https://www.pixijs.com/">PixiJS</a></li><li><a href="https://sketchfab.com/3d-models/computer-desk-4-794432c692cc4bb599ff65ac5740f044">Desk</a></li><li><a href="https://poly.google.com/view/9Ptsg_xZt6B">Notebook</a></li><li><a href="https://sketchfab.com/3d-models/apple-iphone-7-7e82a204471e4ad2bd7595df7f9319da">Phone</a></li><li><a href="http://iphonefaketext.com/">Phone screen</a></li><li><a href="https://poly.google.com/view/aurlA5vCous">Lamp</a></li><li><a target="_blank" href="https://icons8.com/icons/set/speech-bubble">Speech Bubble icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li><li><a target="_blank" href="https://icons8.com/icons/set/lock">Lock icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li><li><a target="_blank" href="https://icons8.com/icons/set/stack-of-photos">Photo Gallery icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li><li><a target="_blank" href="https://icons8.com/icons/set/cancel--v1">Cancel icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li><li><a target="_blank" href="https://icons8.com/icons/set/ok--v1">Ok icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li></ul></div><p><button onclick="$('#credits').hide();$('#landing').show();">back</button></p></div><div id="instructions" class="dialog"><p>Click on your professor's laptop to access it!<br>Win minigames to gather enough evidence to blackmail him about his affair!<br>Press P at any time to pause.</p><button id="play">Play!</button></div><div id="win" class="dialog"><p>you are a winner congrations</p><button onclick="window.location.reload();">thank you</button></div><div id="game"></div><script src="/hackmail/main.22588a8ccb2ae7e1ce07.js"></script></body></html>
