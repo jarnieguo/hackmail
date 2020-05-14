@@ -15,7 +15,10 @@ import {
     Spinner,
     Door,
     Bookshelf,
-    Couch
+    Couch,
+    Santa,
+    Officer,
+    Pikachu
 } from '../objects';
 
 class Room extends Scene {
@@ -44,7 +47,10 @@ class Room extends Scene {
            spinner: new Spinner(),
            door: new Door(),
            bookshelf: new Bookshelf(),
-           couch: new Couch()
+           couch: new Couch(),
+           santa: new Santa(),
+           officer: new Officer(),
+           pikachu: new Pikachu()
         };
 
         this.open = null;
@@ -86,7 +92,12 @@ class Room extends Scene {
 
                     case "spinner":
                         this.objects.spinner.spin();
-                }
+                        return;
+
+                    case "pikachu":
+                        this.objects.pikachu.startRock();
+                        return;
+                }       
                 cur = cur.parent;
             }
         }
@@ -113,6 +124,7 @@ class Room extends Scene {
 
     update(timestamp) {
         this.objects.spinner.update();
+        this.objects.pikachu.update();
     }
 }
 

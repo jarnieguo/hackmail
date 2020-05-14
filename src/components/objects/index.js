@@ -15,3 +15,6 @@ export * from './Spinner';
 export * from './Door';
 export * from './Bookshelf';
 export * from './Couch';
+export * from './Santa';
+export * from './Officer';
+export * from './Pikachu';
