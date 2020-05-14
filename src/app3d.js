@@ -33,10 +33,14 @@ canvas.style.display = 'block'; // Removes padding below canvas
 // Set up controls
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
+controls.dampingFactor = 0.15;
 controls.enablePan = false;
-controls.minDistance = 4;
+controls.minDistance = 0;
 controls.maxDistance = 16;
 controls.maxPolarAngle = Math.PI / 2;
+controls.maxAzimuthAngle = Math.PI / 3;
+controls.minAzimuthAngle = - Math.PI / 3;
+controls.target = new Vector3(0, 0.7, 0);
 controls.update();
 
 //  Set up raycaster
@@ -53,7 +57,7 @@ const onClick = (event) => {
     raycaster.setFromCamera(mouse, camera);
     const intersects = raycaster.intersectObjects(scene.children, true);
     //  Pass onClick to Room scene
-    const res = scene.onClick(camera, intersects);
+    const res = scene.onClick(camera, controls, intersects);
     if (res) {
         //  Tell App to toggle to 2D
         return true;

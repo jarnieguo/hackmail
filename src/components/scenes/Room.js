@@ -1,7 +1,7 @@
 import { Scene, Color } from 'three';
 import { Desk } from 'objects';
 import { BasicLights } from 'lights';
-import { 
+import {
     Computer,
     Floor,
     Wall,
@@ -20,41 +20,36 @@ class Room extends Scene {
 
         this.background = new Color(0x7ec0ee);
 
-        let objects = [];
-        objects.push(new Desk());
-        objects.push(new Lamp());
-        objects.push(new Computer());
-        objects.push(new Floor());
-        objects.push(new Wall(0, 0, -3, 0, 0));
-        objects.push(new Wall(0, 0, 20, Math.PI, 0));
-        objects.push(new Wall(-20, 0, 0, 0, Math.PI / 2));
-        objects.push(new Wall(20, 0, 0, 0, -Math.PI / 2));
-        objects.push(new Window(0, 3, -2.95, 0, 0));
-        objects.push(new Notebook());
-        objects.push(new Phone(true));
-        objects.push(new Pen());
-        objects.push(new Holder());
+        this.objects = {
+           desk: new Desk(),
+           lamp: new Lamp(),
+           computer: new Computer(),
+           floor: new Floor(),
+           wall1: new Wall(0, 0, -3, 0, 0),
+           wall2: new Wall(0, 0, 20, Math.PI, 0),
+           wall3: new Wall(-20, 0, 0, 0, Math.PI / 2),
+           wall4: new Wall(20, 0, 0, 0, -Math.PI / 2),
+           window: new Window(0, 3, -2.95, 0, 0),
+           notebook: new Notebook(),
+           page: new Page(),
+           phone_desk: new Phone(true),
+           phone: new Phone(false),
+           lights: new BasicLights(),
+           pen: new Pen();
+           holder: new Holder();
+        };
 
         this.open = null;
-        const page = new Page();
-        this.page = page;
-        objects.push(page);
-        const phone = new Phone(false);
-        this.phone = phone;
-        objects.push(phone);
-        const lights = new BasicLights();
-        this.lights = lights;
-        objects.push(lights);
-
-        this.add(...objects);
+        this.add(...Object.values(this.objects));
     }
 
     //  Handle onClick events
-    onClick(camera, objects) {
+    onClick(camera, controls, objects) {
         //  Something is open; close it
         if (this.open) {
             this.open.setVisible(false);
             this.open = null;
+            controls.enabled = true;
             return;
         }
 
@@ -63,27 +58,34 @@ class Room extends Scene {
             let obj = objects[i].object;
             let cur = obj;
             while (cur != undefined) {
-                if (cur.name == "notebook") {
-                    this.openObject(camera, this.page);
-                    return;
-                } else if (cur.name == "phone") {
-                    this.openObject(camera, this.phone);
-                    return;
-                } else if (cur.name == 'computer') {
-                    return 'desktop';
-                } else if (cur.name == "lamp") {
-                    this.lights.toggleLights();
-                    return;
+
+                switch (cur.name) {
+                    case "notebook":
+                        this.openObject(camera, controls, this.objects.page);
+                        return;
+
+                    case "phone":
+                        this.openObject(camera, controls, this.objects.phone);
+                        return;
+
+                    case "computer":
+                        // this.lookAtLaptop(camera);
+                        return 'desktop';
+
+                    case "lamp":
+                        this.objects.lights.toggleLights();
+                        return;
                 }
                 cur = cur.parent;
             }
         }
     }
 
-    openObject(camera, object) {
+    openObject(camera, controls, object) {
         this.open = object;
         this.positionToCamera(camera, object);
         object.setVisible(true);
+        controls.enabled = false;
     }
 
     positionToCamera(camera, object) {
@@ -92,6 +94,10 @@ class Room extends Scene {
         let norm = position.clone().normalize();
         position.sub(norm.multiplyScalar(object.cameraScale));
         object.position.copy(position);
+    }
+
+    lookAtLaptop(camera) {
+        camera.position.set(0, 0.8, 1);
     }
 }
 
