@@ -11,7 +11,8 @@ import {
     Phone,
     Lamp,
     Pen,
-    Holder
+    Holder,
+    Spinner
 } from '../objects';
 
 class Room extends Scene {
@@ -36,11 +37,14 @@ class Room extends Scene {
            phone: new Phone(false),
            lights: new BasicLights(),
            pen: new Pen(),
-           holder: new Holder()
+           holder: new Holder(),
+           spinner: new Spinner()
         };
 
         this.open = null;
         this.add(...Object.values(this.objects));
+
+        this.objects.spinner.position.set(-1.5, .1, .4);
     }
 
     //  Handle onClick events
@@ -75,6 +79,9 @@ class Room extends Scene {
                     case "lamp":
                         this.objects.lights.toggleLights();
                         return;
+
+                    case "spinner":
+                        this.objects.spinner.spin();
                 }
                 cur = cur.parent;
             }
@@ -98,6 +105,10 @@ class Room extends Scene {
 
     lookAtLaptop(camera) {
         camera.position.set(0, 0.8, 1);
+    }
+
+    update(timestamp) {
+        this.objects.spinner.update();
     }
 }
 

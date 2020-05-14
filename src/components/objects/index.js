@@ -11,3 +11,4 @@ export * from './Phone';
 export * from './Lamp';
 export * from './Pen';
 export * from './Holder';
+export * from './Spinner';

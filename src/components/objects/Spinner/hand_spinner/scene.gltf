@@ -1,0 +1,328 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 222,
+      "max": [
+        2.4595329761505127,
+        1.7321540117263794,
+        0.20119799673557281
+      ],
+      "min": [
+        -2.4595329761505127,
+        -2.7321538925170898,
+        -0.20119799673557281
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 2664,
+      "componentType": 5126,
+      "count": 222,
+      "max": [
+        0.91905790567398071,
+        0.91905677318572998,
+        1
+      ],
+      "min": [
+        -0.91905713081359863,
+        -0.91905742883682251,
+        -1
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 222,
+      "max": [
+        0.31594738364219666,
+        1,
+        0.91505849361419678,
+        1
+      ],
+      "min": [
+        -0.3159654438495636,
+        0.39216887950897217,
+        -0.91507035493850708,
+        -1
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 222,
+      "max": [
+        0.99783998727798462,
+        0.99800801277160645
+      ],
+      "min": [
+        0.54207402467727661,
+        0.5329359769821167
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 1080,
+      "max": [
+        221
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 5328,
+      "componentType": 5126,
+      "count": 1617,
+      "max": [
+        2.6780960559844971,
+        1.9493919610977173,
+        0.31245800852775574
+      ],
+      "min": [
+        -2.6780960559844971,
+        -2.9448208808898926,
+        -0.31245800852775574
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 24732,
+      "componentType": 5126,
+      "count": 1617,
+      "max": [
+        1,
+        1,
+        1
+      ],
+      "min": [
+        -1,
+        -1,
+        -1
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 3552,
+      "componentType": 5126,
+      "count": 1617,
+      "max": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "min": [
+        -1,
+        -1,
+        -0.99906075000762939,
+        1
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 1776,
+      "componentType": 5126,
+      "count": 1617,
+      "max": [
+        0.99270302057266235,
+        0.99516898393630981
+      ],
+      "min": [
+        0.0019259999971836805,
+        0.0029130000621080399
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 4320,
+      "componentType": 5125,
+      "count": 7464,
+      "max": [
+        1616
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "TomoNaga (https://sketchfab.com/Tomoyuki.Nagamine)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/hand-spinner-1c07b63cc4f2478e9866ca92b545cb4f",
+      "title": "Hand Spinner"
+    },
+    "generator": "Sketchfab-6.31.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 34176,
+      "byteOffset": 0,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 14712,
+      "byteOffset": 34176,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 44136,
+      "byteOffset": 48888,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 29424,
+      "byteOffset": 93024,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 122448,
+      "uri": "scene.bin"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "name": "blinn1SG",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.29999999999999999,
+          0.29999999999999999,
+          0.29999999999999999,
+          1
+        ],
+        "metallicFactor": 0.50492666952265131,
+        "roughnessFactor": 0.51121597769875193
+      }
+    },
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "name": "blinn2SG",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3
+          },
+          "indices": 4,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 6,
+            "POSITION": 5,
+            "TANGENT": 7,
+            "TEXCOORD_0": 8
+          },
+          "indices": 9,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "name": "RootNode (gltf orientation matrix)",
+      "rotation": [
+        -0.70710678118654746,
+        -0,
+        -0,
+        0.70710678118654757
+      ]
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "RootNode (model correction matrix)"
+    },
+    {
+      "children": [
+        3,
+        4
+      ],
+      "name": "spinner.obj.cleaner.materialmerger.gles"
+    },
+    {
+      "mesh": 0,
+      "name": ""
+    },
+    {
+      "mesh": 1,
+      "name": ""
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "OSG_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ]
+}
+
